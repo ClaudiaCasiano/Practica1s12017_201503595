@@ -5,11 +5,18 @@
  */
 package practica1;
 
+import java.awt.List;
+import java.io.File;
+import java.io.IOException;
+import javax.lang.model.element.Element;
+import javax.swing.JFileChooser;
+import javax.swing.text.Document;
+
 /**
  *
  * @author Paola
  */
-public class FrameInicio extends javax.swing.JPanel {
+public class FrameInicio extends javax.swing.JFrame {
 
     /**
      * Creates new form FrameInicio
@@ -68,10 +75,24 @@ public class FrameInicio extends javax.swing.JPanel {
     private void leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerActionPerformed
         // TODO add your handling code here:
         MetodosPrincipal me = new MetodosPrincipal();
-        jugar.setText(me.AbrirArchivo()); 
-            
-    }//GEN-LAST:event_leerActionPerformed
+        jugar.setText(me.AbrirArchivo());
 
+        JFileChooser selector = new JFileChooser();
+        selector.setDialogTitle("Leer Archivo");
+        selector.setFileSelectionMode(0);
+        int opcion = selector.showOpenDialog(selector);
+        selector.setVisible(true);
+        File archivo = selector.getSelectedFile();
+        if (JFileChooser.APPROVE_OPTION == opcion) {
+//            Lista listaNotas = llenarLista(archivo);
+//            return listaNotas;
+        }
+
+
+    }//GEN-LAST:event_leerActionPerformed
+    public void leerxml(String archivo) {
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -79,4 +100,5 @@ public class FrameInicio extends javax.swing.JPanel {
     private javax.swing.JButton jugar;
     private javax.swing.JButton leer;
     // End of variables declaration//GEN-END:variables
+
 }
