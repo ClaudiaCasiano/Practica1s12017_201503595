@@ -15,6 +15,7 @@ public class ColaLetras {
     NodoLet first;
     NodoLet actual;
     int number=0;
+    int valoractual;
     String [] elim = new String[7];
     int noLetras = 95;
 
@@ -45,10 +46,14 @@ public class ColaLetras {
             actual = actual.getSiguiente();
         }
         NodoLet devuelve = actual.getSiguiente();
+        valoractual =devuelve.getPunteo();
         actual.setSiguiente(actual.getSiguiente().getSiguiente());
         noLetras--;
         return devuelve.getLetra();
-        
+    }
+    
+    public int pushno(){
+        return valoractual;
     }
     
     

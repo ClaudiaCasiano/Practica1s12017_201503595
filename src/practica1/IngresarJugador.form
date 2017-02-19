@@ -105,6 +105,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ingresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="listo">
           <Properties>
@@ -116,6 +119,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#xa1;Listo!"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

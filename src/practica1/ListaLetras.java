@@ -24,7 +24,7 @@ public class ListaLetras {
     String[] elim = new String[7];
     int noLetras = 95;
 
-    public void insert(String letter, int punteo) {
+    public void insert(String letter, int punteo) {//Metodo insertar una letra a la lista
         NodoLet newe = new NodoLet(letter, punteo);
 
         if (first == null) {
@@ -39,19 +39,12 @@ public class ListaLetras {
         }
     }
 
-    public String[] letra() {
+    
+    
+    public String[] letra() { 
         String letter[] = new String[2];
-        
-        
         return letter;
-
     }
 
-    public void guardarelim(String letter) {
-        if (number < 6) {
-            elim[number] = letter;
-            number++;
-        }
-    }
 
 }

@@ -13,15 +13,19 @@ public class NodoTab {
 
     private String letra;
     private int valor;
+    private int fila;
+    private int columna;
 
     private NodoTab siguiete;
     private NodoTab anterior;
     private NodoTab up;
     private NodoTab down;
 
-    public NodoTab(String letra, int valor) {
+    public NodoTab(String letra, int valor, int fila, int columna) {
         this.letra = letra;
         this.valor = valor;
+        this.fila = fila;
+        this.columna = columna;
     }
 
     /**
@@ -106,6 +110,34 @@ public class NodoTab {
      */
     public void setDown(NodoTab down) {
         this.down = down;
+    }
+
+    /**
+     * @return the fila
+     */
+    public int getFila() {
+        return fila;
+    }
+
+    /**
+     * @param fila the fila to set
+     */
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    /**
+     * @return the columna
+     */
+    public int getColumna() {
+        return columna;
+    }
+
+    /**
+     * @param columna the columna to set
+     */
+    public void setColumna(int columna) {
+        this.columna = columna;
     }
 
 }

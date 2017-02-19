@@ -33,9 +33,12 @@ public class FrameInicio extends javax.swing.JFrame {
      */
     Diccionario dic = new Diccionario();
     ColaLetras cola = new ColaLetras();
+    Tab tablero = new Tab();
+    boolean activo = false;
     ListaLetras letras;
 
     public FrameInicio() {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         llenarCola();
         initComponents();
 
@@ -147,7 +150,6 @@ public class FrameInicio extends javax.swing.JFrame {
         MetodosPrincipal me = new MetodosPrincipal();
         jugar.setText(me.AbrirArchivo());
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         JFileChooser selector = new JFileChooser();
         selector.setDialogTitle("Leer Archivo");
         selector.setFileSelectionMode(0);
@@ -156,9 +158,14 @@ public class FrameInicio extends javax.swing.JFrame {
         File archivo = selector.getSelectedFile();
 
         if (JFileChooser.APPROVE_OPTION == opcion) {
-            leerxml(archivo);
-            
-            jugar.setEnabled(true);
+            try {
+                leerxml(archivo);
+                jugar.setText("Jugar");
+                jugar.setEnabled(activo);
+            } catch (Exception e) {
+                System.out.println("Error al leer archivo D:");
+            }
+
         }
 
 
@@ -166,9 +173,9 @@ public class FrameInicio extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
-        IngresarJugador newPlayer = new IngresarJugador();
+        IngresarJugador newPlayer = new IngresarJugador(cola);
         newPlayer.setBounds(100, 100, 470, 300);
-        newPlayer.setVisible(true);
+        newPlayer.setVisible(activo);
     }//GEN-LAST:event_jugarActionPerformed
     public void leerxml(File archivo) {
         try {
@@ -197,6 +204,7 @@ public class FrameInicio extends javax.swing.JFrame {
             for (Tag a : dobles.getTagsHijos()) {
                 for (Tag x : a.getTagsHijos()) {
                     System.out.println("dobles " + x.getContenido());
+                    
                 }
             }
 
@@ -205,21 +213,26 @@ public class FrameInicio extends javax.swing.JFrame {
                     System.out.println("triples " + x.getContenido());
                 }
             }
-            
+
             for (Tag palabras : diccionario.getTagsHijos()) {
                 dic.agregar(palabras.getContenido());
                 System.out.println(palabras.getContenido());
             }
 
+            activo=true;
         } catch (TagHijoNotFoundException ex) {
             //exception lanzada cuando no se encuentra el tag hijo
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al leer archivo D:");
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al leer archivo D:");
         } catch (SAXException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al leer archivo D:");
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al leer archivo D:");
         }
     }
 

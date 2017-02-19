@@ -13,138 +13,100 @@ public class Tab {
 
     NodoTab first;
     NodoTab actually;
-    int columnas;
+    Tablero tablero;
+    int valor=1; //este es solo para llenar el espacio
+    int columnas=0;
+    int filas=0;
+    int dimension;
 
     public void crear(int d) {
+        this.dimension =d;
         int i = 1;
-        this.columnas = d;
-        NodoTab nuevo = new NodoTab("primero 1, " + i, 0);
+        NodoTab nuevo = new NodoTab("o" ,valor,filas,columnas);
         first = nuevo;
         actually = first;
-        System.out.println(first.getLetra());
+        System.out.println("1("+actually.getFila()+","+actually.getColumna()+")");
 
 //--------------------PRIMERA FILA ------------------        
-        while (i < d) {
+        while (columnas < d-1) {
             i++;
-            NodoTab nuevo1 = new NodoTab("columna ," + i , 0);
+            columnas ++;
+            NodoTab nuevo1 = new NodoTab("o"  , valor,filas,columnas);
             actually.setSiguiete(nuevo1);
             nuevo1.setAnterior(actually);
-            actually = nuevo1;
-            System.out.println(nuevo1.getLetra());
+            actually = nuevo1;       
+            System.out.println("("+actually.getFila()+","+actually.getColumna()+")");
         }
 //-----------------------ULTIMA COLUMNA-----------------------       
         i = 1;
-        while (i < d) {
+        System.out.println(columnas);
+        while (filas < d-1) {
+            
+            filas++;
             i++;
-            NodoTab nuevo1 = new NodoTab("fila " +i, 0);
+            NodoTab nuevo1 = new NodoTab("o", 0,filas,columnas);
             actually.setDown(nuevo1);
             nuevo1.setUp(actually);
             actually = nuevo1;
-            System.out.println(actually.getLetra());
+            System.out.println("("+actually.getFila()+","+actually.getColumna()+")");
         }
-        columnas--;
-        System.out.println("se ha llegado al ultimo "+ actually.getLetra());
+        System.out.println("termino ultima columna");
         prueba2(actually);
         
-
-////--------------------ULTIMA FILA------------------
-//        i = 1;
-//        while (i < d) {
-//            i++;
-//            NodoTab mania = new NodoTab(null, 0);
-//            nuevo.setAnterior(mania);
-//            mania.setSiguiete(nuevo);
-//            mania.setUp(null);
-//            nuevo = mania;
-//            System.out.println("ultima fila " + i);
-//        }
-////--------------------PRIMERA COLUMNA------------------
-//
-//        i = 1;
-//        while (i < d - 1) {
-//            i++;
-//            NodoTab mania = new NodoTab(null, 0);
-//            nuevo.setUp(mania);
-//            mania.setDown(nuevo);
-//            nuevo = mania;
-//            System.out.println("Primera columna " + i);
-//        }
-//        nuevo.setUp(first);
-//        first.setDown(nuevo);
-//        System.out.println(nuevo.getUp().getLetra());
-//        System.out.println(first.getSiguiete().getLetra());
-//        this.adentro(nuevo);
     }
-
-//    public void adentro(NodoTab nuevo) {
-//
-//        NodoTab holi = null;
-//        NodoTab aux = nuevo;
-//        NodoTab guide = aux.getUp().getSiguiete();
-//        int i = 1;
-//        while (guide.getSiguiete() != null) {
-//
-//            holi = new NodoTab("quisawea " + i, 0);
-//            holi.setAnterior(nuevo);
-//            nuevo.setSiguiete(holi);
-//            holi.setUp(guide);
-//            guide.setDown(holi);
-////            if(i == 1){//y la guia exterior
-////               aux = guide.getDown();
-////            }
-//            guide = guide.getSiguiete();
-//            nuevo = nuevo.getSiguiete();
-//            i++;
-//            System.out.println("algo" + i);
-//        }
-//        nuevo.setSiguiete(guide.getDown());
-//        guide.getDown().setAnterior(nuevo);
-//        System.out.println(nuevo.getLetra());
-//
-//        if (aux.getDown() != null) {
-//            adentro(aux.getDown());
-//        }
-//        System.out.println(nuevo.getSiguiete().getLetra());
-//
-//    }
 
     public void prueba2(NodoTab actual) {
 
-        while (columnas != 0) {
-            NodoTab nuevono = new NodoTab("ab", 4);
+        columnas--;
+        while (columnas >= 0) {
+            NodoTab nuevono = new NodoTab("o", 4,filas,columnas);
             actual.setAnterior(nuevono);
             actual.getAnterior().setSiguiete(actual);
             actual = nuevono;
+            System.out.println("("+actual.getFila()+","+actual.getColumna()+")");
             while (actual.getSiguiete().getUp().getUp() != null) {
-                NodoTab nuevono2 = new NodoTab("ab", 5);
+                filas--;
+                NodoTab nuevono2 = new NodoTab("o", 5,filas,columnas);
                 actual.setUp(nuevono2);
                 nuevono2.setSiguiete(actual.getSiguiete().getUp());
                 nuevono2.getSiguiete().setAnterior(nuevono2);
                 nuevono2.setDown(actual);
                 actual = nuevono2;
-                System.out.println(actual.getLetra());
+                System.out.println("("+actual.getFila()+","+actual.getColumna()+")");
             }
+            System.out.println("valor de fila "+filas + ","+columnas);
             actual.setUp(actual.getSiguiete().getUp().getAnterior());
             actual.getUp().setDown(actual);
-            actual = actual.getUp().getAnterior();
+            System.out.println("("+actual.getUp().getFila()+","+actual.getUp().getColumna()+")");
+            if (actual.getUp().getAnterior()!=null){
+              actual = actual.getUp().getAnterior();  
+            }
             columnas--;
-            if (columnas == 0){
+            filas--;
+            if (columnas < 0){
                 break;
             }
-
-            while (actual.getSiguiete().getDown() != null) {
-                NodoTab nuevono3 = new NodoTab("ha", 6);
+            filas++;
+            
+            while (filas<dimension) {
+                NodoTab nuevono3 = new NodoTab("o", 6,filas,columnas);
                 actual.setDown(nuevono3);
                 nuevono3.setSiguiete(actual.getSiguiete().getDown());
                 nuevono3.getSiguiete().setAnterior(nuevono3);
                 nuevono3.setUp(actual);
                 actual = nuevono3;
-                System.out.println(actual.getLetra());
+                System.out.println("("+actual.getFila()+","+actual.getColumna()+")");
+                filas++;
             }
+            System.out.println("valor de filita2 "+ filas);
+            filas--;
             columnas--;
-            System.out.println(actual.getLetra());
-
+            System.out.println("kkk("+filas+","+columnas+")");
         }
     }
 
+    private void CrearCasilla(int fila, int columna) {
+        
+    
+    }
 }

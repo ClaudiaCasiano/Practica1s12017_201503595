@@ -19,10 +19,6 @@ public class Practica1 {
         FrameInicio inicio = new FrameInicio();
         inicio.setBounds(100, 100, 400, 300);
         inicio.setVisible(true);
-       
-        
-        Tab prueba = new Tab();
-        prueba.crear(20);
         
     }
     

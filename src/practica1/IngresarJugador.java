@@ -11,10 +11,16 @@ package practica1;
  */
 public class IngresarJugador extends javax.swing.JFrame {
 
+    ListaLetras letras;
+    int nojug = 0;
+    Jugadores jugadores = new Jugadores();
+    ColaLetras cola;
+
     /**
      * Creates new form IngresarJugador
      */
-    public IngresarJugador() {
+    public IngresarJugador(ColaLetras cola) {
+        this.cola = cola;
         initComponents();
     }
 
@@ -45,10 +51,20 @@ public class IngresarJugador extends javax.swing.JFrame {
         ingresar.setBackground(new java.awt.Color(64, 109, 109));
         ingresar.setFont(new java.awt.Font("Yu Gothic Medium", 0, 11)); // NOI18N
         ingresar.setText("Ingresar");
+        ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarActionPerformed(evt);
+            }
+        });
 
         listo.setBackground(new java.awt.Color(64, 109, 109));
         listo.setFont(new java.awt.Font("Yu Gothic Medium", 0, 11)); // NOI18N
         listo.setText("¡Listo!");
+        listo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,40 +107,30 @@ public class IngresarJugador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IngresarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IngresarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IngresarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IngresarJugador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
+        // TODO add your handling code here:
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IngresarJugador().setVisible(true);
+        if (jugadores.verificar(nombrejug.getText()) && !nombrejug.getText().isEmpty()) {
+            letras = new ListaLetras(cola);
+            for (int i = 0; i < 7; i++) {
+                letras.insert(cola.push(), cola.pushno());//llena lista de letras del jugador
+                System.out.print("(" + letras.actual.getLetra() + "," + letras.actual.getPunteo() + ")");
             }
-        });
-    }
+            jugadores.insert(nombrejug.getText(), letras);
+            nojug++;
+            System.out.println(nojug + "Se ha insertado un jugador " + nombrejug.getText());
+            nombrejug.setText("");
+        } else {
+            System.out.println("Ese jugador ya ha sido ingresado o no ingreso nombre D:<");
+        }
+    }//GEN-LAST:event_ingresarActionPerformed
+
+    private void listoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listoActionPerformed
+        // TODO add your handling code here:
+        
+        jugadores.imprimir();
+    }//GEN-LAST:event_listoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresar;
