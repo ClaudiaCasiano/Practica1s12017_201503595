@@ -17,7 +17,7 @@ public class MetodosPrincipal {
         JFileChooser abrir = new JFileChooser();
         String archivo =abrir.getName();
         
-        return archivo + "queonza";
+        return archivo;
     }
     
     

@@ -16,8 +16,10 @@ public class Practica1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Incio inicio = new Incio();
+        FrameInicio inicio = new FrameInicio();
+        inicio.setBounds(100, 100, 400, 300);
         inicio.setVisible(true);
+       
         
         Tab prueba = new Tab();
         prueba.crear(20);

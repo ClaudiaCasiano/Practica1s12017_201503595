@@ -11,6 +11,16 @@ import java.io.IOException;
 import javax.lang.model.element.Element;
 import javax.swing.JFileChooser;
 import javax.swing.text.Document;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import org.jespxml.JespXML;
+import org.jespxml.excepciones.AtributoNotFoundException;
+import org.jespxml.excepciones.TagHijoNotFoundException;
+import org.jespxml.modelo.Tag;
+import org.xml.sax.SAXException;
+import sun.applet.Main;
 
 /**
  *
@@ -21,8 +31,55 @@ public class FrameInicio extends javax.swing.JFrame {
     /**
      * Creates new form FrameInicio
      */
+    Diccionario dic = new Diccionario();
+    ColaLetras cola = new ColaLetras();
+    ListaLetras letras;
+
     public FrameInicio() {
+        llenarCola();
         initComponents();
+
+    }
+
+    public void llenarCola() {
+        for (int i = 0; i < 12; i++) {
+            cola.insert("A", 1);
+            cola.insert("E", 1);
+        }
+        for (int i = 0; i < 9; i++) {
+            cola.insert("O", 1);
+        }
+        for (int i = 0; i < 6; i++) {
+            cola.insert("S", 1);
+            cola.insert("I", 1);
+        }
+        for (int i = 0; i < 5; i++) {
+            cola.insert("N", 1);
+            cola.insert("R", 1);
+            cola.insert("U", 1);
+            cola.insert("D", 2);
+        }
+        for (int i = 0; i < 4; i++) {
+            cola.insert("T", 1);
+            cola.insert("L", 1);
+            cola.insert("C", 3);
+        }
+        for (int i = 0; i < 2; i++) {
+            cola.insert("G", 2);
+            cola.insert("B", 3);
+            cola.insert("M", 3);
+            cola.insert("P", 3);
+            cola.insert("H", 4);
+        }
+        cola.insert("F", 4);
+        cola.insert("V", 4);
+        cola.insert("Y", 4);
+        cola.insert("Q", 5);
+        cola.insert("J", 8);
+        cola.insert("Ñ", 8);
+        cola.insert("X", 8);
+        cola.insert("Z", 10);
+
     }
 
     /**
@@ -34,21 +91,25 @@ public class FrameInicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         leer = new javax.swing.JButton();
         jugar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
-        setLayout(null);
+        getContentPane().setLayout(null);
+
+        panel.setBackground(new java.awt.Color(0, 51, 51));
+        panel.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("04b", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 102, 0));
         jLabel1.setText("SCRABBLE");
-        add(jLabel1);
-        jLabel1.setBounds(110, 70, 200, 60);
+        panel.add(jLabel1);
+        jLabel1.setBounds(90, 60, 200, 60);
 
-        leer.setBackground(new java.awt.Color(255, 255, 0));
+        leer.setBackground(new java.awt.Color(109, 132, 78));
         leer.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
         leer.setText("LEER ARCHIVO");
         leer.addActionListener(new java.awt.event.ActionListener() {
@@ -56,20 +117,29 @@ public class FrameInicio extends javax.swing.JFrame {
                 leerActionPerformed(evt);
             }
         });
-        add(leer);
-        leer.setBounds(110, 140, 180, 40);
+        panel.add(leer);
+        leer.setBounds(90, 110, 180, 40);
 
+        jugar.setBackground(new java.awt.Color(109, 132, 78));
         jugar.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
         jugar.setText("Jugar");
         jugar.setEnabled(false);
-        add(jugar);
-        jugar.setBounds(110, 200, 180, 40);
+        jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jugarActionPerformed(evt);
+            }
+        });
+        panel.add(jugar);
+        jugar.setBounds(90, 160, 180, 40);
 
         jLabel2.setFont(new java.awt.Font("04b", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SCRABBLE");
-        add(jLabel2);
-        jLabel2.setBounds(110, 70, 200, 60);
+        panel.add(jLabel2);
+        jLabel2.setBounds(90, 60, 190, 60);
+
+        getContentPane().add(panel);
+        panel.setBounds(0, 0, 400, 300);
     }// </editor-fold>//GEN-END:initComponents
 
     private void leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerActionPerformed
@@ -77,21 +147,80 @@ public class FrameInicio extends javax.swing.JFrame {
         MetodosPrincipal me = new MetodosPrincipal();
         jugar.setText(me.AbrirArchivo());
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         JFileChooser selector = new JFileChooser();
         selector.setDialogTitle("Leer Archivo");
         selector.setFileSelectionMode(0);
         int opcion = selector.showOpenDialog(selector);
         selector.setVisible(true);
         File archivo = selector.getSelectedFile();
+
         if (JFileChooser.APPROVE_OPTION == opcion) {
-//            Lista listaNotas = llenarLista(archivo);
-//            return listaNotas;
+            leerxml(archivo);
+            
+            jugar.setEnabled(true);
         }
 
 
     }//GEN-LAST:event_leerActionPerformed
-    public void leerxml(String archivo) {
 
+    private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
+        // TODO add your handling code here:
+        IngresarJugador newPlayer = new IngresarJugador();
+        newPlayer.setBounds(100, 100, 470, 300);
+        newPlayer.setVisible(true);
+    }//GEN-LAST:event_jugarActionPerformed
+    public void leerxml(File archivo) {
+        try {
+            //Cargo el archivo
+            JespXML arch = new JespXML(archivo);
+            //leo el archivo y me retorna el tag raiz, que en este caso
+            // es biblioteca
+            Tag scrabble = arch.leerXML();
+            //Obtengo los tags que necesito, por el nombre
+            Tag dimension = scrabble.getTagHijoByName("dimension");
+            Tag dobles = scrabble.getTagHijoByName("dobles");
+            Tag casillasd = dobles.getTagHijoByName("casilla");
+            Tag xd = casillasd.getTagHijoByName("x");
+            Tag yd = casillasd.getTagHijoByName("y");
+            Tag triples = scrabble.getTagHijoByName("triples");
+            Tag casillast = triples.getTagHijoByName("casilla");
+            Tag xt = casillast.getTagHijoByName("x");
+            Tag yt = casillast.getTagHijoByName("y");
+            Tag diccionario = scrabble.getTagHijoByName("diccionario");
+            Tag palabra = diccionario.getTagHijoByName("palabra");
+            //puedo obtener los valores de los atributos de un tag específico
+
+            int dx = Integer.parseInt(xd.getContenido());
+            int dy = Integer.parseInt(yd.getContenido());
+
+            for (Tag a : dobles.getTagsHijos()) {
+                for (Tag x : a.getTagsHijos()) {
+                    System.out.println("dobles " + x.getContenido());
+                }
+            }
+
+            for (Tag a : triples.getTagsHijos()) {
+                for (Tag x : a.getTagsHijos()) {
+                    System.out.println("triples " + x.getContenido());
+                }
+            }
+            
+            for (Tag palabras : diccionario.getTagsHijos()) {
+                dic.agregar(palabras.getContenido());
+                System.out.println(palabras.getContenido());
+            }
+
+        } catch (TagHijoNotFoundException ex) {
+            //exception lanzada cuando no se encuentra el tag hijo
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -99,6 +228,7 @@ public class FrameInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jugar;
     private javax.swing.JButton leer;
+    private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 
 }

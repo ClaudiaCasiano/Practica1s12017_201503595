@@ -5,42 +5,53 @@
  */
 package practica1;
 
+import java.util.Random;
+
 /**
  *
  * @author Paola
  */
 public class ListaLetras {
+    ColaLetras cola;
     
-    NodoLet first;
-    int number=0;
-    String [] elim = new String[7];
-
-    public ListaLetras(NodoLet first) {
-        this.first = null;
+    public ListaLetras(ColaLetras cola){
+        this.cola = cola;
     }
-    
-    public void insert(String letter){
-        NodoLet newe = new NodoLet(letter);
-        
-        if(first == null){
+
+    NodoLet first;
+    NodoLet actual;
+    int number = 0;
+    String[] elim = new String[7];
+    int noLetras = 95;
+
+    public void insert(String letter, int punteo) {
+        NodoLet newe = new NodoLet(letter, punteo);
+
+        if (first == null) {
             first = newe;
             first.setSiguiente(null);
-        }else{
-            NodoLet actual = first;
-            
-            while(actual.getSiguiente()!= null){
-                actual = actual.getSiguiente();
-            }
+            actual = first;
+        } else {
+
             actual.setSiguiente(newe);
             newe.setSiguiente(null);
+            actual = newe;
         }
     }
-    
-    public void guardarelim(String letter){
-        if (number < 6){
-            elim[number]=letter;
+
+    public String[] letra() {
+        String letter[] = new String[2];
+        
+        
+        return letter;
+
+    }
+
+    public void guardarelim(String letter) {
+        if (number < 6) {
+            elim[number] = letter;
             number++;
         }
     }
-    
+
 }

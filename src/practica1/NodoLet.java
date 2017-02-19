@@ -11,10 +11,12 @@ package practica1;
  */
 public class NodoLet {
     private String letra;
+    private int punteo;
     private NodoLet siguiente;
 
-    public NodoLet(String letra) {
+    public NodoLet(String letra, int punteo) {
         this.letra = letra;
+        this.punteo = punteo;
     }
 
     /**
@@ -43,6 +45,20 @@ public class NodoLet {
      */
     public void setSiguiente(NodoLet siguiente) {
         this.siguiente = siguiente;
+    }
+
+    /**
+     * @return the punteo
+     */
+    public int getPunteo() {
+        return punteo;
+    }
+
+    /**
+     * @param punteo the punteo to set
+     */
+    public void setPunteo(int punteo) {
+        this.punteo = punteo;
     }
     
     

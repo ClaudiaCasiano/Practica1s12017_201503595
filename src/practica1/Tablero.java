@@ -29,46 +29,239 @@ public class Tablero extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        Puntaje = new javax.swing.JTextPane();
+        Tabla = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nombre = new javax.swing.JLabel();
+        L1 = new javax.swing.JLabel();
+        L2 = new javax.swing.JLabel();
+        L3 = new javax.swing.JLabel();
+        L4 = new javax.swing.JLabel();
+        L5 = new javax.swing.JLabel();
+        L6 = new javax.swing.JLabel();
+        L7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Nueva = new javax.swing.JTextField();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        AddWord = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        CL1 = new javax.swing.JCheckBox();
+        CL2 = new javax.swing.JCheckBox();
+        CL3 = new javax.swing.JCheckBox();
+        CL4 = new javax.swing.JCheckBox();
+        CL5 = new javax.swing.JCheckBox();
+        CL6 = new javax.swing.JCheckBox();
+        CL7 = new javax.swing.JCheckBox();
+        change = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+        jPanel1.setBackground(new java.awt.Color(122, 105, 55));
+        jPanel1.setLayout(null);
+
+        jScrollPane1.setViewportView(Puntaje);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(610, 130, 110, 130);
+
+        Tabla.setBackground(new java.awt.Color(102, 102, 102));
+
+        javax.swing.GroupLayout TablaLayout = new javax.swing.GroupLayout(Tabla);
+        Tabla.setLayout(TablaLayout);
+        TablaLayout.setHorizontalGroup(
+            TablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+        TablaLayout.setVerticalGroup(
+            TablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
         );
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jPanel1.add(Tabla);
+        Tabla.setBounds(10, 10, 560, 420);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(288, Short.MAX_VALUE))
+        jLabel1.setText("Cambiar Letras");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(620, 390, 100, 30);
+
+        jLabel2.setText("Jugador");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(630, 20, 60, 30);
+
+        nombre.setText("Nombre");
+        jPanel1.add(nombre);
+        nombre.setBounds(630, 50, 60, 30);
+
+        L1.setText("Letra1");
+        L1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L1);
+        L1.setBounds(500, 450, 70, 70);
+
+        L2.setText("Letra1");
+        L2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L2);
+        L2.setBounds(420, 450, 70, 70);
+
+        L3.setText("Letra1");
+        L3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L3);
+        L3.setBounds(340, 450, 70, 70);
+
+        L4.setText("Letra1");
+        L4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L4);
+        L4.setBounds(260, 450, 70, 70);
+
+        L5.setText("Letra1");
+        L5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L5);
+        L5.setBounds(180, 450, 70, 70);
+
+        L6.setText("Letra1");
+        L6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L6);
+        L6.setBounds(100, 450, 70, 70);
+
+        L7.setText("Letra1");
+        L7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        jPanel1.add(L7);
+        L7.setBounds(20, 450, 70, 70);
+
+        jLabel4.setText("Puntuacion");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(630, 100, 60, 30);
+        jPanel1.add(Nueva);
+        Nueva.setBounds(620, 320, 120, 20);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addTab("Diccionario", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Cola Fichas", jPanel4);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Jugadores", jPanel5);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Tablero", jPanel7);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 426, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Lista Fichas", jPanel6);
+
+        jPanel1.add(jTabbedPane1);
+        jTabbedPane1.setBounds(790, 20, 260, 470);
+
+        AddWord.setText("Agregar");
+        jPanel1.add(AddWord);
+        AddWord.setBounds(640, 350, 71, 23);
+
+        jLabel3.setText("Nueva Palabra");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(640, 290, 100, 30);
+
+        CL1.setText("L1");
+        jPanel1.add(CL1);
+        CL1.setBounds(640, 480, 40, 23);
+
+        CL2.setText("L1");
+        jPanel1.add(CL2);
+        CL2.setBounds(590, 420, 40, 23);
+
+        CL3.setText("L1");
+        jPanel1.add(CL3);
+        CL3.setBounds(590, 450, 40, 23);
+
+        CL4.setText("L1");
+        jPanel1.add(CL4);
+        CL4.setBounds(590, 480, 40, 23);
+
+        CL5.setText("L1");
+        jPanel1.add(CL5);
+        CL5.setBounds(590, 510, 40, 23);
+
+        CL6.setText("L1");
+        CL6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CL6);
+        CL6.setBounds(640, 420, 40, 23);
+
+        CL7.setText("L1");
+        jPanel1.add(CL7);
+        CL7.setBounds(640, 450, 40, 23);
+
+        change.setText("Cambiar");
+        jPanel1.add(change);
+        change.setBounds(700, 430, 71, 60);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 1070, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CL6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CL6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,8 +299,37 @@ public class Tablero extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddWord;
+    private javax.swing.JCheckBox CL1;
+    private javax.swing.JCheckBox CL2;
+    private javax.swing.JCheckBox CL3;
+    private javax.swing.JCheckBox CL4;
+    private javax.swing.JCheckBox CL5;
+    private javax.swing.JCheckBox CL6;
+    private javax.swing.JCheckBox CL7;
+    private javax.swing.JLabel L1;
+    private javax.swing.JLabel L2;
+    private javax.swing.JLabel L3;
+    private javax.swing.JLabel L4;
+    private javax.swing.JLabel L5;
+    private javax.swing.JLabel L6;
+    private javax.swing.JLabel L7;
+    private javax.swing.JTextField Nueva;
+    private javax.swing.JTextPane Puntaje;
+    private javax.swing.JPanel Tabla;
+    private javax.swing.JButton change;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel nombre;
     // End of variables declaration//GEN-END:variables
 }
