@@ -13,6 +13,8 @@ public class Jugadores {
 
     NodoJug head;
     NodoJug newe;
+    NodoJug jugadorActual;
+    ListaLetras listaActual;
 
     public Jugadores() {
         head = null;
@@ -23,6 +25,7 @@ public class Jugadores {
 
         if (head == null) {
             head = newe;
+            jugadorActual = head;
             newe.setSiguiente(head);
         } else {
             NodoJug actual = head;
@@ -43,6 +46,11 @@ public class Jugadores {
         }
         System.out.println(newe.getName());
     }
+    
+    public NodoJug siguiente(){
+        jugadorActual = jugadorActual.getSiguiente();
+        return jugadorActual;
+    }
 
     public boolean verificar(String nombre) {
         NodoJug visual;
@@ -57,7 +65,6 @@ public class Jugadores {
                 return false;
             }
         }
-        
             return true;//en otro caso, si lo deja :33
         }
 
