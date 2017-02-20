@@ -415,18 +415,23 @@ public class Tablero extends javax.swing.JFrame {
         i3 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
         cuadrito = new ImageIcon(i3.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L3.setIcon(cuadrito);
+        CL3.setText(lista.primeralet.getLetra());
         i4 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
         cuadrito = new ImageIcon(i4.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L4.setIcon(cuadrito);
+        CL4.setText(lista.primeralet.getLetra());
         i5 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
         cuadrito = new ImageIcon(i5.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L5.setIcon(cuadrito);
+        CL5.setText(lista.primeralet.getLetra());
         i6 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
         cuadrito = new ImageIcon(i6.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L6.setIcon(cuadrito);
+        CL6.setText(lista.primeralet.getLetra());
         i7 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
         cuadrito = new ImageIcon(i7.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L7.setIcon(cuadrito);
+        CL7.setText(lista.primeralet.getLetra());
     }
 
     private void CL6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL6ActionPerformed
