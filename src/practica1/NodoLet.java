@@ -12,11 +12,13 @@ package practica1;
 public class NodoLet {
     private String letra;
     private int punteo;
+    private String imagen;
     private NodoLet siguiente;
 
-    public NodoLet(String letra, int punteo) {
+    public NodoLet(String letra, int punteo, String imagen) {
         this.letra = letra;
         this.punteo = punteo;
+        this.imagen = imagen;
     }
 
     /**
@@ -59,6 +61,20 @@ public class NodoLet {
      */
     public void setPunteo(int punteo) {
         this.punteo = punteo;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
     
     

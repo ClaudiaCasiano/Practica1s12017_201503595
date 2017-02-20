@@ -11,7 +11,8 @@ package practica1;
  */
 public class IngresarJugador extends javax.swing.JFrame {
 
-    ListaLetras letras;
+//    ListaLetras letras;
+    Tab tablero;
     int nojug = 0;
     Jugadores jugadores = new Jugadores();
     ColaLetras cola;
@@ -19,8 +20,9 @@ public class IngresarJugador extends javax.swing.JFrame {
     /**
      * Creates new form IngresarJugador
      */
-    public IngresarJugador(ColaLetras cola) {
+    public IngresarJugador(ColaLetras cola,Tab tablero) {
         this.cola = cola;
+        this.tablero = tablero;
         initComponents();
     }
 
@@ -111,14 +113,16 @@ public class IngresarJugador extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (jugadores.verificar(nombrejug.getText()) && !nombrejug.getText().isEmpty()) {
-            letras = new ListaLetras(cola);
+            ListaLetras letras = new ListaLetras(cola);
             for (int i = 0; i < 7; i++) {
-                letras.insert(cola.push(), cola.pushno());//llena lista de letras del jugador
-                System.out.print("(" + letras.actual.getLetra() + "," + letras.actual.getPunteo() + ")");
+                cola.push();
+                letras.insert(cola.pushlet(), cola.pushno(),cola.pushim());//llena lista de letras del jugador
+                System.out.print("(" + letras.actual.getLetra() + "," + letras.actual.getPunteo()+ ")");
             }
             jugadores.insert(nombrejug.getText(), letras);
             nojug++;
-            System.out.println(nojug + "Se ha insertado un jugador " + nombrejug.getText());
+            System.out.println(nojug + ". Se ha insertado un jugador " + jugadores.jugadorActual.getName());
+            System.out.println("la primera letra del jugador es " + jugadores.jugadorActual.getLetras().primeralet.getImagen());
             nombrejug.setText("");
         } else {
             System.out.println("Ese jugador ya ha sido ingresado o no ingreso nombre D:<");
@@ -127,7 +131,9 @@ public class IngresarJugador extends javax.swing.JFrame {
 
     private void listoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listoActionPerformed
         // TODO add your handling code here:
-        
+        Tablero juego = new Tablero(tablero,jugadores,cola);
+        juego.setBounds(0, 0, 1275, 760);
+        juego.setVisible(true);
         jugadores.imprimir();
     }//GEN-LAST:event_listoActionPerformed
 

@@ -46,42 +46,42 @@ public class FrameInicio extends javax.swing.JFrame {
 
     public void llenarCola() {
         for (int i = 0; i < 12; i++) {
-            cola.insert("A", 1);
-            cola.insert("E", 1);
+            cola.insert("A", 1,"/Images/A.jpg");
+            cola.insert("E", 1,"/Images/E.jpg");
         }
         for (int i = 0; i < 9; i++) {
-            cola.insert("O", 1);
+            cola.insert("O", 1,"/Images/O.jpg");
         }
         for (int i = 0; i < 6; i++) {
-            cola.insert("S", 1);
-            cola.insert("I", 1);
+            cola.insert("S", 1,"/Images/S.jpg");
+            cola.insert("I", 1,"/Images/I.jpg");
         }
         for (int i = 0; i < 5; i++) {
-            cola.insert("N", 1);
-            cola.insert("R", 1);
-            cola.insert("U", 1);
-            cola.insert("D", 2);
+            cola.insert("N", 1,"/Images/N.jpg");
+            cola.insert("R", 1,"/Images/R.jpg");
+            cola.insert("U", 1,"/Images/U.jpg");
+            cola.insert("D", 2,"/Images/D.jpg");
         }
         for (int i = 0; i < 4; i++) {
-            cola.insert("T", 1);
-            cola.insert("L", 1);
-            cola.insert("C", 3);
+            cola.insert("T", 1,"/Images/T.jpg");
+            cola.insert("L", 1,"/Images/L.jpg");
+            cola.insert("C", 3,"/Images/C.jpg");
         }
         for (int i = 0; i < 2; i++) {
-            cola.insert("G", 2);
-            cola.insert("B", 3);
-            cola.insert("M", 3);
-            cola.insert("P", 3);
-            cola.insert("H", 4);
+            cola.insert("G", 2,"/Images/G.jpg");
+            cola.insert("B", 3,"/Images/B.jpg");
+            cola.insert("M", 3,"/Images/M.jpg");
+            cola.insert("P", 3,"/Images/P.jpg");
+            cola.insert("H", 4,"/Images/H.jpg");
         }
-        cola.insert("F", 4);
-        cola.insert("V", 4);
-        cola.insert("Y", 4);
-        cola.insert("Q", 5);
-        cola.insert("J", 8);
-        cola.insert("Ñ", 8);
-        cola.insert("X", 8);
-        cola.insert("Z", 10);
+        cola.insert("F", 4,"/Images/F.jpg");
+        cola.insert("V", 4,"/Images/V.jpg");
+        cola.insert("Y", 4,"/Images/Y.jpg");
+        cola.insert("Q", 5,"/Images/Q.jpg");
+        cola.insert("J", 8,"/Images/J.jpg");
+        cola.insert("Ñ", 8,"/Images/Ñ.jpg");
+        cola.insert("X", 8,"/Images/X.jpg");
+        cola.insert("Z", 10,"/Images/Z.jpg");
 
     }
 
@@ -173,10 +173,12 @@ public class FrameInicio extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
-        IngresarJugador newPlayer = new IngresarJugador(cola);
+        IngresarJugador newPlayer = new IngresarJugador(cola,tablero);
+        System.out.println(tablero.dimension);
         newPlayer.setBounds(100, 100, 470, 300);
         newPlayer.setVisible(activo);
     }//GEN-LAST:event_jugarActionPerformed
+   
     public void leerxml(File archivo) {
         try {
             //Cargo el archivo
@@ -201,16 +203,21 @@ public class FrameInicio extends javax.swing.JFrame {
             int dx = Integer.parseInt(xd.getContenido());
             int dy = Integer.parseInt(yd.getContenido());
 
+            System.out.println(dimension.getContenido());
+//            tablero.dimension=Integer.parseInt(dimension.getContenido());
+            tablero.crear(Integer.parseInt(dimension.getContenido()));
+            
             for (Tag a : dobles.getTagsHijos()) {
                 for (Tag x : a.getTagsHijos()) {
                     System.out.println("dobles " + x.getContenido());
-                    
+                    tablero.setdobles(Integer.parseInt(x.getContenido()));
                 }
             }
 
             for (Tag a : triples.getTagsHijos()) {
                 for (Tag x : a.getTagsHijos()) {
                     System.out.println("triples " + x.getContenido());
+                    tablero.settriples(Integer.parseInt(x.getContenido()));
                 }
             }
 
@@ -224,15 +231,19 @@ public class FrameInicio extends javax.swing.JFrame {
             //exception lanzada cuando no se encuentra el tag hijo
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al leer archivo D:");
+            System.out.println(ex.getLocalizedMessage());
         } catch (ParserConfigurationException ex) {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al leer archivo D:");
+            System.out.println(ex.getLocalizedMessage());
         } catch (SAXException ex) {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al leer archivo D:");
+            System.out.println(ex.getLocalizedMessage());
         } catch (IOException ex) {
 //            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al leer archivo D:");
+            System.out.println(ex.getLocalizedMessage());
         }
     }
 

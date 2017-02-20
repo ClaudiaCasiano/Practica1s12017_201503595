@@ -12,55 +12,62 @@ import java.util.Random;
  * @author Paola
  */
 public class ColaLetras {
+
     NodoLet first;
     NodoLet actual;
-    int number=0;
+    int number = 0;
     int valoractual;
-    String [] elim = new String[7];
+    String[] elim = new String[7];
     int noLetras = 95;
+    String imagenactual,letraactual;
 
-    
-    public void insert(String letter,int punteo){
-        NodoLet newe = new NodoLet(letter,punteo);
-        
-        if(first == null){
+    public void insert(String letter, int punteo, String imagen) {
+        NodoLet newe = new NodoLet(letter, punteo, imagen);
+
+        if (first == null) {
             first = newe;
             first.setSiguiente(null);
             actual = first;
-        }else{
-           
+        } else {
+
             actual.setSiguiente(newe);
             newe.setSiguiente(null);
             actual = newe;
         }
     }
-    
-    public String push(){
+
+    public void push() {
         actual = first;
         /*crear un numero random de 0 a 94 para que le asigne el valor a un nodo y devuelva el 
         siguiente de este nodo, por eso debe ser 94, ya que si es 95 y toca el ultimo nodo, no podra devolver nada
         ya que el siguiente de este es null
-        */
+         */
         int n = new Random().nextInt(noLetras);
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             actual = actual.getSiguiente();
         }
         NodoLet devuelve = actual.getSiguiente();
-        valoractual =devuelve.getPunteo();
+        valoractual = devuelve.getPunteo();
+        imagenactual = devuelve.getImagen();
+        letraactual = devuelve.getLetra();
         actual.setSiguiente(actual.getSiguiente().getSiguiente());
         noLetras--;
-        return devuelve.getLetra();
     }
-    
-    public int pushno(){
+
+    public int pushno() {
         return valoractual;
     }
-    
-    
-    
-    public void guardarelim(String letter){
-        if (number < 6){
-            elim[number]=letter;
+
+    public String pushim() {
+        return imagenactual;
+    }
+    public String pushlet(){
+        return letraactual;
+    }
+
+    public void guardarelim(String letter) {
+        if (number < 6) {
+            elim[number] = letter;
             number++;
         }
     }

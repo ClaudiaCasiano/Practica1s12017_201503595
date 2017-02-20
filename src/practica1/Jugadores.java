@@ -24,9 +24,10 @@ public class Jugadores {
         newe = new NodoJug(name, lista);
 
         if (head == null) {
-            head = newe;
-            jugadorActual = head;
+            this.head = newe;
             newe.setSiguiente(head);
+            jugadorActual = this.head;
+            System.out.println();
         } else {
             NodoJug actual = head;
             while (actual.getSiguiente() != head) {

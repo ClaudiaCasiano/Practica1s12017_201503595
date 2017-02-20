@@ -15,17 +15,20 @@ public class NodoTab {
     private int valor;
     private int fila;
     private int columna;
+    private String imagen;
 
     private NodoTab siguiete;
     private NodoTab anterior;
     private NodoTab up;
     private NodoTab down;
+    
 
-    public NodoTab(String letra, int valor, int fila, int columna) {
+    public NodoTab(String letra, int valor, int fila, int columna,String imagen) {
         this.letra = letra;
         this.valor = valor;
         this.fila = fila;
         this.columna = columna;
+        this.imagen = imagen;
     }
 
     /**
@@ -138,6 +141,20 @@ public class NodoTab {
      */
     public void setColumna(int columna) {
         this.columna = columna;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }
