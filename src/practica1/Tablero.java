@@ -5,6 +5,12 @@
  */
 package practica1;
 
+import java.awt.Color;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Paola
@@ -14,8 +20,21 @@ public class Tablero extends javax.swing.JFrame {
     /**
      * Creates new form Tablero
      */
-    public Tablero() {
+    IngresarJugador op;
+    Jugadores jugador;
+    ImageIcon i1, i2, i3, i4, i5, i6, i7;  //procesadores dice.. nooo hombreee xD
+    Icon cuadrito;
+    Tab tablero;
+    int dimensions;
+
+    public Tablero(Tab tablero, Jugadores jugadores, ColaLetras cola) {
         initComponents();
+        this.op = op;
+        this.tablero = tablero;
+        this.jugador = jugadores;
+        cargarTablero();
+        jugadorAct(jugador.jugadorActual, jugador.jugadorActual.getLetras());
+
     }
 
     /**
@@ -27,20 +46,20 @@ public class Tablero extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        PanelCafe = new javax.swing.JPanel();
+        L1 = new javax.swing.JLabel();
+        L7 = new javax.swing.JLabel();
+        L4 = new javax.swing.JLabel();
+        L3 = new javax.swing.JLabel();
+        L2 = new javax.swing.JLabel();
+        L5 = new javax.swing.JLabel();
+        L6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Puntaje = new javax.swing.JTextPane();
         Tabla = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nombre = new javax.swing.JLabel();
-        L1 = new javax.swing.JLabel();
-        L2 = new javax.swing.JLabel();
-        L3 = new javax.swing.JLabel();
-        L4 = new javax.swing.JLabel();
-        L5 = new javax.swing.JLabel();
-        L6 = new javax.swing.JLabel();
-        L7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Nueva = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -59,92 +78,169 @@ public class Tablero extends javax.swing.JFrame {
         CL6 = new javax.swing.JCheckBox();
         CL7 = new javax.swing.JCheckBox();
         change = new javax.swing.JButton();
+        cancelar = new javax.swing.JLabel();
+        validar1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(122, 105, 55));
-        jPanel1.setLayout(null);
+        PanelCafe.setBackground(new java.awt.Color(122, 105, 55));
+        PanelCafe.setPreferredSize(new java.awt.Dimension(1275, 730));
+        PanelCafe.setLayout(null);
+
+        L1.setText("Letra1");
+        L1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L1MouseDragged(evt);
+            }
+        });
+        L1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L1MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L1);
+        L1.setBounds(560, 620, 70, 70);
+
+        L7.setText("Letra1");
+        L7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L7MouseDragged(evt);
+            }
+        });
+        L7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L7MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L7);
+        L7.setBounds(70, 620, 70, 70);
+
+        L4.setText("Letra1");
+        L4.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L4MouseDragged(evt);
+            }
+        });
+        L4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L4MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L4);
+        L4.setBounds(320, 620, 70, 70);
+
+        L3.setText("Letra1");
+        L3.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L3MouseDragged(evt);
+            }
+        });
+        L3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L3MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L3);
+        L3.setBounds(400, 620, 70, 70);
+
+        L2.setText("Letra1");
+        L2.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L2MouseDragged(evt);
+            }
+        });
+        L2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L2MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L2);
+        L2.setBounds(480, 620, 70, 70);
+
+        L5.setText("Letra1");
+        L5.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L5MouseDragged(evt);
+            }
+        });
+        L5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L5MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L5);
+        L5.setBounds(240, 620, 70, 70);
+
+        L6.setText("Letra1");
+        L6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        L6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
+        L6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                L6MouseDragged(evt);
+            }
+        });
+        L6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                L6MouseReleased(evt);
+            }
+        });
+        PanelCafe.add(L6);
+        L6.setBounds(160, 620, 70, 70);
 
         jScrollPane1.setViewportView(Puntaje);
 
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(610, 130, 110, 130);
+        PanelCafe.add(jScrollPane1);
+        jScrollPane1.setBounds(690, 160, 210, 130);
 
         Tabla.setBackground(new java.awt.Color(102, 102, 102));
+        Tabla.setMinimumSize(new java.awt.Dimension(600, 600));
+        Tabla.setPreferredSize(new java.awt.Dimension(600, 600));
+        Tabla.setLayout(null);
+        PanelCafe.add(Tabla);
+        Tabla.setBounds(60, 10, 600, 600);
 
-        javax.swing.GroupLayout TablaLayout = new javax.swing.GroupLayout(Tabla);
-        Tabla.setLayout(TablaLayout);
-        TablaLayout.setHorizontalGroup(
-            TablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
-        );
-        TablaLayout.setVerticalGroup(
-            TablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Tabla);
-        Tabla.setBounds(10, 10, 560, 420);
-
+        jLabel1.setFont(new java.awt.Font("8BIT WONDER", 0, 18)); // NOI18N
         jLabel1.setText("Cambiar Letras");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(620, 390, 100, 30);
+        PanelCafe.add(jLabel1);
+        jLabel1.setBounds(690, 430, 260, 40);
 
-        jLabel2.setText("Jugador");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(630, 20, 60, 30);
+        jLabel2.setFont(new java.awt.Font("8BIT WONDER", 0, 18)); // NOI18N
+        jLabel2.setText("Turno");
+        PanelCafe.add(jLabel2);
+        jLabel2.setBounds(690, 10, 210, 40);
 
+        nombre.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
         nombre.setText("Nombre");
-        jPanel1.add(nombre);
-        nombre.setBounds(630, 50, 60, 30);
+        PanelCafe.add(nombre);
+        nombre.setBounds(690, 50, 210, 60);
 
-        L1.setText("Letra1");
-        L1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L1);
-        L1.setBounds(500, 450, 70, 70);
-
-        L2.setText("Letra1");
-        L2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L2);
-        L2.setBounds(420, 450, 70, 70);
-
-        L3.setText("Letra1");
-        L3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L3);
-        L3.setBounds(340, 450, 70, 70);
-
-        L4.setText("Letra1");
-        L4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L4);
-        L4.setBounds(260, 450, 70, 70);
-
-        L5.setText("Letra1");
-        L5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L5);
-        L5.setBounds(180, 450, 70, 70);
-
-        L6.setText("Letra1");
-        L6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L6);
-        L6.setBounds(100, 450, 70, 70);
-
-        L7.setText("Letra1");
-        L7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
-        jPanel1.add(L7);
-        L7.setBounds(20, 450, 70, 70);
-
+        jLabel4.setFont(new java.awt.Font("8BIT WONDER", 0, 18)); // NOI18N
         jLabel4.setText("Puntuacion");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(630, 100, 60, 30);
-        jPanel1.add(Nueva);
-        Nueva.setBounds(620, 320, 120, 20);
+        PanelCafe.add(jLabel4);
+        jLabel4.setBounds(690, 120, 210, 40);
+
+        Nueva.setText("fff");
+        PanelCafe.add(Nueva);
+        Nueva.setBounds(690, 360, 160, 30);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,7 +253,7 @@ public class Tablero extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +266,7 @@ public class Tablero extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +279,7 @@ public class Tablero extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +292,7 @@ public class Tablero extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 255, Short.MAX_VALUE)
+            .addGap(0, 285, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,97 +301,245 @@ public class Tablero extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Lista Fichas", jPanel6);
 
-        jPanel1.add(jTabbedPane1);
-        jTabbedPane1.setBounds(790, 20, 260, 470);
+        PanelCafe.add(jTabbedPane1);
+        jTabbedPane1.setBounds(960, 20, 290, 470);
 
+        AddWord.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         AddWord.setText("Agregar");
-        jPanel1.add(AddWord);
-        AddWord.setBounds(640, 350, 71, 23);
+        PanelCafe.add(AddWord);
+        AddWord.setBounds(860, 360, 90, 30);
 
+        jLabel3.setFont(new java.awt.Font("8BIT WONDER", 0, 18)); // NOI18N
         jLabel3.setText("Nueva Palabra");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(640, 290, 100, 30);
+        PanelCafe.add(jLabel3);
+        jLabel3.setBounds(690, 320, 260, 40);
 
+        CL1.setBackground(new java.awt.Color(122, 105, 55));
         CL1.setText("L1");
-        jPanel1.add(CL1);
-        CL1.setBounds(640, 480, 40, 23);
+        PanelCafe.add(CL1);
+        CL1.setBounds(760, 530, 40, 23);
 
+        CL2.setBackground(new java.awt.Color(122, 105, 55));
         CL2.setText("L1");
-        jPanel1.add(CL2);
-        CL2.setBounds(590, 420, 40, 23);
+        PanelCafe.add(CL2);
+        CL2.setBounds(700, 470, 40, 23);
 
+        CL3.setBackground(new java.awt.Color(122, 105, 55));
         CL3.setText("L1");
-        jPanel1.add(CL3);
-        CL3.setBounds(590, 450, 40, 23);
+        PanelCafe.add(CL3);
+        CL3.setBounds(700, 500, 40, 23);
 
+        CL4.setBackground(new java.awt.Color(122, 105, 55));
         CL4.setText("L1");
-        jPanel1.add(CL4);
-        CL4.setBounds(590, 480, 40, 23);
+        PanelCafe.add(CL4);
+        CL4.setBounds(700, 530, 40, 23);
 
+        CL5.setBackground(new java.awt.Color(122, 105, 55));
         CL5.setText("L1");
-        jPanel1.add(CL5);
-        CL5.setBounds(590, 510, 40, 23);
+        PanelCafe.add(CL5);
+        CL5.setBounds(700, 560, 40, 23);
 
+        CL6.setBackground(new java.awt.Color(122, 105, 55));
         CL6.setText("L1");
         CL6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CL6ActionPerformed(evt);
             }
         });
-        jPanel1.add(CL6);
-        CL6.setBounds(640, 420, 40, 23);
+        PanelCafe.add(CL6);
+        CL6.setBounds(760, 470, 40, 23);
 
+        CL7.setBackground(new java.awt.Color(122, 105, 55));
         CL7.setText("L1");
-        jPanel1.add(CL7);
-        CL7.setBounds(640, 450, 40, 23);
+        PanelCafe.add(CL7);
+        CL7.setBounds(760, 500, 40, 23);
 
+        change.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         change.setText("Cambiar");
-        jPanel1.add(change);
-        change.setBounds(700, 430, 71, 60);
+        change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeActionPerformed(evt);
+            }
+        });
+        PanelCafe.add(change);
+        change.setBounds(840, 480, 90, 60);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1070, 590);
+        cancelar.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
+        cancelar.setText("cancelar");
+        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelCafe.add(cancelar);
+        cancelar.setBounds(850, 590, 120, 80);
+
+        validar1.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
+        validar1.setText("validar");
+        validar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        PanelCafe.add(validar1);
+        validar1.setBounds(700, 590, 120, 80);
+
+        getContentPane().add(PanelCafe);
+        PanelCafe.setBounds(0, 0, 1275, 730);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void cargarTablero() {
+        int dim = tablero.dimension;
+        System.out.println("LA DIMENSION DEL TABLERO ES " + tablero.dimension);
+        dimensions = Tabla.getWidth() / dim;
+        for (int i = 0; i < dim; i++) {
+            for (int j = 0; j < dim; j++) {
+                JLabel cuadro = new JLabel();
+                ImageIcon icono = new ImageIcon(getClass().getResource(tablero.imagen()));
+                Icon cuadrito = new ImageIcon(icono.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
+                cuadro.setIcon(cuadrito);
+                Tabla.add(cuadro);
+                cuadro.setBounds(i * dimensions, j * dimensions, dimensions, dimensions);
+                cuadro.setVisible(true);
+            }
+
+        }
+
+    }
+
+    public void jugadorAct(NodoJug jugador, ListaLetras lista) {
+        lista.primeralet = lista.first;
+        nombre.setText(jugador.getName());
+        i1 = new ImageIcon(getClass().getResource(jugador.getLetras().primeralet.getImagen()));
+        cuadrito = new ImageIcon(i1.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L1.setIcon(cuadrito);
+        CL1.setText(lista.primeralet.getLetra());
+        i2 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i2.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L2.setIcon(cuadrito);
+        CL2.setText(lista.primeralet.getLetra());
+        i3 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i3.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L3.setIcon(cuadrito);
+        i4 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i4.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L4.setIcon(cuadrito);
+        i5 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i5.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L5.setIcon(cuadrito);
+        i6 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i6.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L6.setIcon(cuadrito);
+        i7 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
+        cuadrito = new ImageIcon(i7.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L7.setIcon(cuadrito);
+    }
 
     private void CL6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CL6ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tablero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void L7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L7MouseDragged
+        // TODO add your handling code here:
+        moverlb(L7, evt, i7);
+    }//GEN-LAST:event_L7MouseDragged
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tablero().setVisible(true);
-            }
-        });
+    private void L7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L7MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L7, evt, 70, 620, i7);
+    }//GEN-LAST:event_L7MouseReleased
+
+    private void L6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L6MouseDragged
+        // TODO add your handling code here:
+        moverlb(L6, evt, i6);
+    }//GEN-LAST:event_L6MouseDragged
+
+    private void L5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseDragged
+        // TODO add your handling code here:
+        moverlb(L5, evt, i5);
+    }//GEN-LAST:event_L5MouseDragged
+
+    private void L4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L4MouseDragged
+        // TODO add your handling code here:
+        moverlb(L4, evt, i4);
+    }//GEN-LAST:event_L4MouseDragged
+
+    private void L3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L3MouseDragged
+        // TODO add your handling code here:
+        moverlb(L3, evt, i3);
+    }//GEN-LAST:event_L3MouseDragged
+
+    private void L2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L2MouseDragged
+        // TODO add your handling code here:
+        moverlb(L2, evt, i2);
+    }//GEN-LAST:event_L2MouseDragged
+
+    private void L1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L1MouseDragged
+        // TODO add your handling code here:
+        moverlb(L1, evt, i1);
+    }//GEN-LAST:event_L1MouseDragged
+
+    private void L6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L6MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L6, evt, 160, 620, i6);
+    }//GEN-LAST:event_L6MouseReleased
+
+    private void L5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L5, evt, 240, 620, i5);
+    }//GEN-LAST:event_L5MouseReleased
+
+    private void L4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L4MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L4, evt, 320, 620, i4);
+    }//GEN-LAST:event_L4MouseReleased
+
+    private void L3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L3MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L3, evt, 400, 620, i3);
+    }//GEN-LAST:event_L3MouseReleased
+
+    private void L2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L2MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L2, evt, 480, 620, i2);
+    }//GEN-LAST:event_L2MouseReleased
+
+    private void L1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L1MouseReleased
+        // TODO add your handling code here:
+        soltarLb(L1, evt, 560, 620, i1);
+    }//GEN-LAST:event_L1MouseReleased
+
+    private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
+        // TODO add your handling code here:
+        NodoJug sig = jugador.jugadorActual.getSiguiente();
+        L7.setBounds(70, 620, 70, 70);
+        L6.setBounds(160, 620, 70, 70);
+        L5.setBounds(240, 620, 70, 70);
+        L4.setBounds(320, 620, 70, 70);
+        L3.setBounds(400, 620, 70, 70);
+        L2.setBounds(480, 620, 70, 70);
+        L1.setBounds(560, 620, 70, 70);
+        jugador.jugadorActual = jugador.jugadorActual.getSiguiente();
+        jugadorAct(sig, sig.getLetras());
+
+    }//GEN-LAST:event_changeActionPerformed
+
+    public void moverlb(JLabel lb, java.awt.event.MouseEvent evt, ImageIcon im) {
+        lb.setLocation(lb.getX() + evt.getX() - lb.getWidth() / 2, lb.getY() + evt.getY() - lb.getHeight() / 2);
+
+    }
+
+    public void soltarLb(JLabel lb, java.awt.event.MouseEvent evt, int lx, int ly, ImageIcon im) {
+        int centrox = lb.getX() + evt.getX() - lb.getWidth() / 2;
+        int centroy = lb.getY() + evt.getY() - lb.getHeight() / 2;
+        int tablax = Tabla.getX();
+        int tablay = Tabla.getY();
+        int tW = Tabla.getWidth();
+        if (centrox >= tablax && centrox <= tablax + tW & centroy >= tablay & centroy <= tablay + tW) {
+            int x = tablax + ((centrox) / dimensions) * dimensions;
+            int y = tablay + (centroy / dimensions) * dimensions;
+            lb.setBounds(x, y, dimensions, dimensions);
+            cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
+            lb.setIcon(cuadrito);
+        } else {
+            lb.setBounds(lx, ly, 70, 70);
+            cuadrito = new ImageIcon(im.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+            lb.setIcon(cuadrito);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -315,14 +559,15 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JLabel L6;
     private javax.swing.JLabel L7;
     private javax.swing.JTextField Nueva;
+    private javax.swing.JPanel PanelCafe;
     private javax.swing.JTextPane Puntaje;
     private javax.swing.JPanel Tabla;
+    private javax.swing.JLabel cancelar;
     private javax.swing.JButton change;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -331,5 +576,6 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel nombre;
+    private javax.swing.JLabel validar1;
     // End of variables declaration//GEN-END:variables
 }
