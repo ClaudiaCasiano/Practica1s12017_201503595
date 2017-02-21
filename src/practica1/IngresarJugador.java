@@ -5,6 +5,8 @@
  */
 package practica1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Paola
@@ -13,6 +15,7 @@ public class IngresarJugador extends javax.swing.JFrame {
 
 //    ListaLetras letras;
     Tab tablero;
+    Diccionario diccionario;
     int nojug = 0;
     Jugadores jugadores = new Jugadores();
     ColaLetras cola;
@@ -20,9 +23,10 @@ public class IngresarJugador extends javax.swing.JFrame {
     /**
      * Creates new form IngresarJugador
      */
-    public IngresarJugador(ColaLetras cola,Tab tablero) {
+    public IngresarJugador(ColaLetras cola, Tab tablero, Diccionario diccionario) {
         this.cola = cola;
         this.tablero = tablero;
+        this.diccionario = diccionario;
         initComponents();
     }
 
@@ -111,30 +115,41 @@ public class IngresarJugador extends javax.swing.JFrame {
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         // TODO add your handling code here:
-
-        if (jugadores.verificar(nombrejug.getText()) && !nombrejug.getText().isEmpty()) {
+        try {
+            if (jugadores.verificar(nombrejug.getText()) && !nombrejug.getText().isEmpty()) {
             ListaLetras letras = new ListaLetras(cola);
             for (int i = 0; i < 7; i++) {
                 cola.push();
                 letras.insert(cola.pushlet(), cola.pushno(),cola.pushim());//llena lista de letras del jugador
                 System.out.print("(" + letras.actual.getLetra() + "," + letras.actual.getPunteo()+ ")");
             }
-            jugadores.insert(nombrejug.getText(), letras);
+            jugadores.insert(nombrejug.getText().trim(), letras);
             nojug++;
-            System.out.println(nojug + ". Se ha insertado un jugador " + jugadores.jugadorActual.getName());
-            System.out.println("la primera letra del jugador es " + jugadores.jugadorActual.getLetras().primeralet.getImagen());
+            JOptionPane.showMessageDialog(null, "Se ha ingresado a " + nombrejug.getText());
             nombrejug.setText("");
         } else {
             System.out.println("Ese jugador ya ha sido ingresado o no ingreso nombre D:<");
         }
+        } catch (Exception e) {
+            System.out.println("waitmeh");
+        }
+
     }//GEN-LAST:event_ingresarActionPerformed
 
     private void listoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listoActionPerformed
         // TODO add your handling code here:
-        Tablero juego = new Tablero(tablero,jugadores,cola);
+        if(jugadores.numero>1){
+           jugadores.ultimo();
+        jugadores.grafico();
+        Tablero juego = new Tablero(tablero, jugadores, cola, diccionario);
         juego.setBounds(0, 0, 1275, 760);
+        this.dispose();
         juego.setVisible(true);
-        jugadores.imprimir();
+        jugadores.imprimir(); 
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ser mas de un jugador");
+        }
+        
     }//GEN-LAST:event_listoActionPerformed
 
 

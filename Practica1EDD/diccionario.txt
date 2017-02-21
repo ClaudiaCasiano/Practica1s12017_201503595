@@ -1,0 +1,26 @@
+digraph G
+{hola; 
+mundo; 
+hola -> mundo; 
+como; 
+mundo -> como; 
+estas; 
+como -> estas; 
+uno; 
+estas -> uno; 
+dos; 
+uno -> dos; 
+tres; 
+dos -> tres; 
+universidad; 
+tres -> universidad; 
+practica; 
+universidad -> practica; 
+primera; 
+practica -> primera; 
+correo; 
+primera -> correo; 
+juego; 
+correo -> juego; 
+
+}

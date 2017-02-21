@@ -13,8 +13,11 @@ public class Jugadores {
 
     NodoJug head;
     NodoJug newe;
+    int numero = 0;
     NodoJug jugadorActual;
     ListaLetras listaActual;
+    graphiz grafic = new graphiz();
+    String archivo = "";
 
     public Jugadores() {
         head = null;
@@ -22,22 +25,29 @@ public class Jugadores {
 
     public void insert(String name, ListaLetras lista) {
         newe = new NodoJug(name, lista);
+        numero++;
 
         if (head == null) {
             this.head = newe;
             newe.setSiguiente(head);
             jugadorActual = this.head;
-            System.out.println();
+            archivo = archivo + head.getName()+"; \n";
         } else {
             NodoJug actual = head;
             while (actual.getSiguiente() != head) {
                 actual = actual.getSiguiente();
             }
+            archivo = archivo + newe.getName()+"; \n";
+            archivo = archivo + actual.getName()+" -> "+newe.getName()+"; \n";
             actual.setSiguiente(newe);
             newe.setAnterior(actual);
             newe.setSiguiente(head);
         }
         System.out.println("se incerto "+ newe.getName());
+    }
+    
+    public void ultimo(){
+        archivo = archivo + newe.getName()+" -> "+head.getName()+"; \n";
     }
 
     public void imprimir() {
@@ -69,5 +79,11 @@ public class Jugadores {
             return true;//en otro caso, si lo deja :33
         }
 
+    }
+
+    void grafico() {
+        System.out.println(archivo);
+        grafic.grafo(archivo, "jugadores");
+        grafic.generar("jugadores");
     }
 }

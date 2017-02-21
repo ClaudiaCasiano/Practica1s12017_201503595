@@ -7,9 +7,16 @@ package practica1;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,17 +30,20 @@ public class Tablero extends javax.swing.JFrame {
     IngresarJugador op;
     Jugadores jugador;
     ImageIcon i1, i2, i3, i4, i5, i6, i7;  //procesadores dice.. nooo hombreee xD
+    ImageIcon imcola, imuser, imficha, imdiccio, immatriz;
+    Diccionario dic;
     Icon cuadrito;
     Tab tablero;
     int dimensions;
 
-    public Tablero(Tab tablero, Jugadores jugadores, ColaLetras cola) {
+    public Tablero(Tab tablero, Jugadores jugadores, ColaLetras cola, Diccionario dic) {
         initComponents();
-        this.op = op;
+        this.dic = dic;
         this.tablero = tablero;
         this.jugador = jugadores;
         cargarTablero();
         jugadorAct(jugador.jugadorActual, jugador.jugadorActual.getLetras());
+        timer();
 
     }
 
@@ -64,10 +74,15 @@ public class Tablero extends javax.swing.JFrame {
         Nueva = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        lbdiccionario = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        lbcola = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        lbjugadores = new javax.swing.JLabel();
+        paneltab = new javax.swing.JPanel();
+        lbtablero = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        lbfichas = new javax.swing.JLabel();
         AddWord = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         CL1 = new javax.swing.JCheckBox();
@@ -222,7 +237,8 @@ public class Tablero extends javax.swing.JFrame {
         PanelCafe.add(jLabel2);
         jLabel2.setBounds(690, 10, 210, 40);
 
-        nombre.setFont(new java.awt.Font("Courier New", 0, 18)); // NOI18N
+        nombre.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
         nombre.setText("Nombre");
         PanelCafe.add(nombre);
         nombre.setBounds(690, 50, 210, 60);
@@ -236,16 +252,26 @@ public class Tablero extends javax.swing.JFrame {
         PanelCafe.add(Nueva);
         Nueva.setBounds(690, 360, 160, 30);
 
+        jTabbedPane1.setBackground(new java.awt.Color(0, 102, 102));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbdiccionario, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbdiccionario, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        lbdiccionario.getAccessibleContext().setAccessibleName("");
 
         jTabbedPane1.addTab("Diccionario", jPanel3);
 
@@ -253,11 +279,17 @@ public class Tablero extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbcola, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbcola, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Cola Fichas", jPanel4);
@@ -266,37 +298,55 @@ public class Tablero extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbjugadores, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbjugadores, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Jugadores", jPanel5);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+        javax.swing.GroupLayout paneltabLayout = new javax.swing.GroupLayout(paneltab);
+        paneltab.setLayout(paneltabLayout);
+        paneltabLayout.setHorizontalGroup(
+            paneltabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneltabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbtablero, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+        paneltabLayout.setVerticalGroup(
+            paneltabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneltabLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbtablero, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Tablero", jPanel7);
+        jTabbedPane1.addTab("Tablero", paneltab);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbfichas, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbfichas, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Lista Fichas", jPanel6);
@@ -306,6 +356,11 @@ public class Tablero extends javax.swing.JFrame {
 
         AddWord.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         AddWord.setText("Agregar");
+        AddWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddWordActionPerformed(evt);
+            }
+        });
         PanelCafe.add(AddWord);
         AddWord.setBounds(860, 360, 90, 30);
 
@@ -367,6 +422,11 @@ public class Tablero extends javax.swing.JFrame {
         cancelar.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
         cancelar.setText("cancelar");
         cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelarMouseClicked(evt);
+            }
+        });
         PanelCafe.add(cancelar);
         cancelar.setBounds(850, 590, 120, 80);
 
@@ -523,20 +583,53 @@ public class Tablero extends javax.swing.JFrame {
 
     }//GEN-LAST:event_changeActionPerformed
 
+    private void AddWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddWordActionPerformed
+        // TODO add your handling code here:
+        String newword = Nueva.getText();
+        dic.agregar(newword);
+        dic.generarArchivo();
+    }//GEN-LAST:event_AddWordActionPerformed
+
+    private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
+        // TODO add your handling code here:
+        cuadrito = new ImageIcon(i1.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L1.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i2.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L2.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i3.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L3.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i4.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L4.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i5.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L5.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i6.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L6.setIcon(cuadrito);
+        cuadrito = new ImageIcon(i7.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        L7.setIcon(cuadrito);
+        L7.setBounds(70, 620, 70, 70);
+        L6.setBounds(160, 620, 70, 70);
+        L5.setBounds(240, 620, 70, 70);
+        L4.setBounds(320, 620, 70, 70);
+        L3.setBounds(400, 620, 70, 70);
+        L2.setBounds(480, 620, 70, 70);
+        L1.setBounds(560, 620, 70, 70);
+    }//GEN-LAST:event_cancelarMouseClicked
+
     public void moverlb(JLabel lb, java.awt.event.MouseEvent evt, ImageIcon im) {
         lb.setLocation(lb.getX() + evt.getX() - lb.getWidth() / 2, lb.getY() + evt.getY() - lb.getHeight() / 2);
-
     }
 
     public void soltarLb(JLabel lb, java.awt.event.MouseEvent evt, int lx, int ly, ImageIcon im) {
         int centrox = lb.getX() + evt.getX() - lb.getWidth() / 2;
         int centroy = lb.getY() + evt.getY() - lb.getHeight() / 2;
+        System.out.println(centrox);
+        System.out.print(centroy);
         int tablax = Tabla.getX();
         int tablay = Tabla.getY();
         int tW = Tabla.getWidth();
         if (centrox >= tablax && centrox <= tablax + tW & centroy >= tablay & centroy <= tablay + tW) {
-            int x = tablax + ((centrox) / dimensions) * dimensions;
-            int y = tablay + (centroy / dimensions) * dimensions;
+            int x = tablax + ((centrox - tablax) / dimensions) * dimensions;
+            int y = tablay + ((centroy - tablay) / dimensions) * dimensions;
             lb.setBounds(x, y, dimensions, dimensions);
             cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
             lb.setIcon(cuadrito);
@@ -546,6 +639,38 @@ public class Tablero extends javax.swing.JFrame {
             lb.setIcon(cuadrito);
         }
     }
+
+    public void timer() {
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File miDir = new File(".");
+                String directo;
+                try {
+                    directo = miDir.getCanonicalPath();
+                    imcola = new ImageIcon(directo + "\\Practica1EDD\\cola.jpg");
+                    imdiccio= new ImageIcon(directo + "\\Practica1EDD\\diccionario.jpg");
+                    imficha = new ImageIcon(directo + "\\Practica1EDD\\ficha.jpg");
+                    immatriz = new ImageIcon(directo + "\\Practica1EDD\\matriz.jpg");
+                    imuser = new ImageIcon(directo + "\\Practica1EDD\\jugadores.jpg");
+                    
+                    lbcola.setIcon(new ImageIcon(imcola.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
+                    lbdiccionario.setIcon(new ImageIcon(imdiccio.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
+                    lbfichas.setIcon(new ImageIcon(imficha.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
+                    lbtablero.setIcon(new ImageIcon(immatriz.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
+                    lbjugadores.setIcon(new ImageIcon(imuser.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                
+
+            }
+        });
+        timer.start();
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddWord;
@@ -577,10 +702,15 @@ public class Tablero extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbcola;
+    private javax.swing.JLabel lbdiccionario;
+    private javax.swing.JLabel lbfichas;
+    private javax.swing.JLabel lbjugadores;
+    private javax.swing.JLabel lbtablero;
     private javax.swing.JLabel nombre;
+    private javax.swing.JPanel paneltab;
     private javax.swing.JLabel validar1;
     // End of variables declaration//GEN-END:variables
 }

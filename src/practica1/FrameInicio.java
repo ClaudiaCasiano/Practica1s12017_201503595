@@ -14,6 +14,7 @@ import javax.swing.text.Document;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.ParserConfigurationException;
 import org.jespxml.JespXML;
 import org.jespxml.excepciones.AtributoNotFoundException;
@@ -173,9 +174,10 @@ public class FrameInicio extends javax.swing.JFrame {
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
         // TODO add your handling code here:
-        IngresarJugador newPlayer = new IngresarJugador(cola,tablero);
+        IngresarJugador newPlayer = new IngresarJugador(cola,tablero,dic);
         System.out.println(tablero.dimension);
         newPlayer.setBounds(100, 100, 470, 300);
+        JOptionPane.showMessageDialog(null, "Bienvenido, ingrese jugadores");
         newPlayer.setVisible(activo);
     }//GEN-LAST:event_jugarActionPerformed
    
@@ -225,6 +227,7 @@ public class FrameInicio extends javax.swing.JFrame {
                 dic.agregar(palabras.getContenido());
                 System.out.println(palabras.getContenido());
             }
+            dic.generarArchivo();
 
             activo=true;
         } catch (TagHijoNotFoundException ex) {

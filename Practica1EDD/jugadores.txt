@@ -1,0 +1,7 @@
+digraph G
+{perfil; 
+uno; 
+perfil -> uno; 
+uno -> perfil; 
+
+}

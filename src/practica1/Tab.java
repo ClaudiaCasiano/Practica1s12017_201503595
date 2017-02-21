@@ -135,8 +135,7 @@ public class Tab {
 //            System.out.println("kkk(" + filas + "," + columnas + ")");
         }
         System.out.println(archivo);
-        grafo(archivo);
-        generar();
+        
     }
 
     private void CrearCasilla(int f, int c, int valor) {
@@ -196,57 +195,5 @@ public class Tab {
 
     }
 
-    private void grafo(String archivo) {// EN ESTE CREO EL ARCHIVO CON EL QUE SE GRAFICA
-        try {
-            File vo = new File("C:\\Practica1EDD\\grafoMatriz.txt");
-            BufferedWriter bw;
-            if (vo.exists()) {
-                bw = new BufferedWriter(new FileWriter(vo));
-                bw.write("graph G\n{" + archivo + "\n}");
-//                bw.newLine();
-//                bw.write("digraph G\n{" + archivo + "\n}");
-
-            } else {
-                bw = new BufferedWriter(new FileWriter(vo));
-                bw.write("graph G\n{" + archivo + "\n}");
-            }
-
-            bw.close();
-        } catch (Exception e) {
-            System.out.println("Errorcito D':");
-            System.out.println(e.getMessage());
-        }
-    }
     
-    public void generar() {
-        try {
-
-            File miDir = new File(".");
-            String directo = miDir.getCanonicalPath();
-
-            String dotPath = directo + "\\Graphviz 2.28\\bin\\dot.exe";
-
-            String fileInputPath = "C:\\Practica1EDD\\grafoMatriz.txt";
-            String fileOutputPath = "C:\\Practica1EDD\\grafo.jpg";
-//            String fileOutputPath = getClass().getResource("/grafo1.jpg").toString();
-
-            String tParam = "-Tjpg";
-            String tOParam = "-o";
-
-            String[] cmd = new String[5];
-            cmd[0] = dotPath;
-            cmd[1] = tParam;
-            cmd[2] = fileInputPath;
-            cmd[3] = tOParam;
-            cmd[4] = fileOutputPath;
-
-            Runtime rt = Runtime.getRuntime(); Process p = rt.exec(cmd);
-            System.out.println("supuestamente genero la imagen");
-            p.waitFor();
-        } catch (Exception ex) {
-            System.out.println("Error en Generar D:");
-            ex.printStackTrace();
-        } finally {
-        }
-    }
 }
