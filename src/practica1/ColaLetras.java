@@ -6,6 +6,7 @@
 package practica1;
 
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,10 +20,12 @@ public class ColaLetras {
     int valoractual;
     String[] elim = new String[7];
     int noLetras = 95;
-    String imagenactual,letraactual;
+    String letraactual;
+    ImageIcon imagenactual;
 
-    public void insert(String letter, int punteo, String imagen) {
+    public void insert(String letter, int punteo, ImageIcon imagen) {
         NodoLet newe = new NodoLet(letter, punteo, imagen);
+        System.out.print(newe.getLetra()+ ", ");
 
         if (first == null) {
             first = newe;
@@ -42,15 +45,20 @@ public class ColaLetras {
         siguiente de este nodo, por eso debe ser 94, ya que si es 95 y toca el ultimo nodo, no podra devolver nada
         ya que el siguiente de este es null
          */
-        int n = new Random().nextInt(noLetras);
-        for (int i = 0; i < n; i++) {
+        Random n = new Random();
+        int x =  (int)(n.nextDouble()*noLetras);
+                
+        System.out.print("numero de letras" + noLetras);
+        System.out.print("numero random "+x);
+        for (int i = 0; i < x-1; i++) {
+//            System.out.println(i);
             actual = actual.getSiguiente();
         }
         NodoLet devuelve = actual.getSiguiente();
         valoractual = devuelve.getPunteo();
         imagenactual = devuelve.getImagen();
         letraactual = devuelve.getLetra();
-        actual.setSiguiente(actual.getSiguiente().getSiguiente());
+        actual.setSiguiente(devuelve.getSiguiente());
         noLetras--;
     }
 
@@ -58,7 +66,7 @@ public class ColaLetras {
         return valoractual;
     }
 
-    public String pushim() {
+    public ImageIcon pushim() {
         return imagenactual;
     }
     public String pushlet(){

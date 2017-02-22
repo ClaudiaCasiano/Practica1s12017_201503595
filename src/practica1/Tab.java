@@ -20,6 +20,7 @@ public class Tab {
     NodoTab primerfila;
     NodoTab actually;
     Tablero tablero;
+    graphiz grafic;
     int valor = 1; //este es solo para llenar el espacio
     int columnas = 0;
     int filas = 0;
@@ -134,7 +135,7 @@ public class Tab {
 
 //            System.out.println("kkk(" + filas + "," + columnas + ")");
         }
-        System.out.println(archivo);
+//        crearel(archivo);
         
     }
 
@@ -193,6 +194,44 @@ public class Tab {
             valor = 1;
         }
 
+    }
+    
+    public String arch(){
+        archivo = "";
+        
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                archivo = archivo + "nodo"+i+""+j+"; \n";
+            }
+        }
+        for (int i = 0; i < dimension-1; i++) {
+            for (int j = 0; j < dimension-1; j++) {
+                archivo = archivo + "nodo"+i+""+j+" -> nodo"+(i+1)+""+(j+1)+"; \n";
+                archivo = archivo + "nodo"+(i+1)+""+(j+1)+" -> nodo"+(i)+""+(j)+"; \n";
+                archivo = archivo + "nodo"+(i)+""+(j)+" -> nodo"+(i+1)+""+(j)+"; \n";
+                archivo = archivo + "nodo"+(i+1)+""+(j)+" -> nodo"+(i)+""+(j)+"; \n";
+                
+            }
+        }
+        return archivo;
+    }
+    
+    
+    public boolean hayAlgo(int x, int y){
+        NodoTab casilla = first;
+        for (int i = 0; i < x; i++) {
+            casilla = casilla.getSiguiete();
+        }
+        for (int i = 0; i < y; i++) {
+            casilla = casilla.getDown();
+        }
+        return !"null".equals(casilla.getLetra());
+    }
+
+    public void crearel() {
+        grafic = new graphiz();
+        grafic.grafo(arch(), "matriz");
+        grafic.generar("matriz");
     }
 
     

@@ -29,12 +29,15 @@ public class Tablero extends javax.swing.JFrame {
      */
     IngresarJugador op;
     Jugadores jugador;
-    ImageIcon i1, i2, i3, i4, i5, i6, i7;  //procesadores dice.. nooo hombreee xD
+    ImageIcon[] im = new ImageIcon[7];  //procesadores dice.. nooo hombreee xD
     ImageIcon imcola, imuser, imficha, imdiccio, immatriz;
     Diccionario dic;
     Icon cuadrito;
     Tab tablero;
-    int dimensions;
+    int dimensions, ax, ay;
+    int pun[] = new int[7];
+    boolean cambiar[] = new boolean[7];
+    String letras[] = new String[7];
 
     public Tablero(Tab tablero, Jugadores jugadores, ColaLetras cola, Diccionario dic) {
         initComponents();
@@ -42,6 +45,7 @@ public class Tablero extends javax.swing.JFrame {
         this.tablero = tablero;
         this.jugador = jugadores;
         cargarTablero();
+        jugador.Random();
         jugadorAct(jugador.jugadorActual, jugador.jugadorActual.getLetras());
         timer();
 
@@ -271,8 +275,6 @@ public class Tablero extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lbdiccionario.getAccessibleContext().setAccessibleName("");
-
         jTabbedPane1.addTab("Diccionario", jPanel3);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -371,26 +373,51 @@ public class Tablero extends javax.swing.JFrame {
 
         CL1.setBackground(new java.awt.Color(122, 105, 55));
         CL1.setText("L1");
+        CL1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL1ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL1);
         CL1.setBounds(760, 530, 40, 23);
 
         CL2.setBackground(new java.awt.Color(122, 105, 55));
         CL2.setText("L1");
+        CL2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL2ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL2);
         CL2.setBounds(700, 470, 40, 23);
 
         CL3.setBackground(new java.awt.Color(122, 105, 55));
         CL3.setText("L1");
+        CL3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL3ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL3);
         CL3.setBounds(700, 500, 40, 23);
 
         CL4.setBackground(new java.awt.Color(122, 105, 55));
         CL4.setText("L1");
+        CL4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL4ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL4);
         CL4.setBounds(700, 530, 40, 23);
 
         CL5.setBackground(new java.awt.Color(122, 105, 55));
         CL5.setText("L1");
+        CL5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL5ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL5);
         CL5.setBounds(700, 560, 40, 23);
 
@@ -406,6 +433,11 @@ public class Tablero extends javax.swing.JFrame {
 
         CL7.setBackground(new java.awt.Color(122, 105, 55));
         CL7.setText("L1");
+        CL7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CL7ActionPerformed(evt);
+            }
+        });
         PanelCafe.add(CL7);
         CL7.setBounds(760, 500, 40, 23);
 
@@ -464,113 +496,143 @@ public class Tablero extends javax.swing.JFrame {
     public void jugadorAct(NodoJug jugador, ListaLetras lista) {
         lista.primeralet = lista.first;
         nombre.setText(jugador.getName());
-        i1 = new ImageIcon(getClass().getResource(jugador.getLetras().primeralet.getImagen()));
-        cuadrito = new ImageIcon(i1.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        im[0] = jugador.getLetras().primeralet.getImagen();
+        cuadrito = new ImageIcon(im[0].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L1.setIcon(cuadrito);
+        L1.setText(jugador.getLetras().primeralet.getLetra());
+        pun[0] = jugador.getLetras().primeralet.getPunteo();
+        letras[0] = jugador.getLetras().primeralet.getLetra();
         CL1.setText(lista.primeralet.getLetra());
-        i2 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i2.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[1] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[1].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L2.setIcon(cuadrito);
+        L2.setText(jugador.getLetras().primeralet.getLetra());
+        pun[1] = jugador.getLetras().primeralet.getPunteo();
+        letras[1] = jugador.getLetras().primeralet.getLetra();
         CL2.setText(lista.primeralet.getLetra());
-        i3 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i3.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[2] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[2].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L3.setIcon(cuadrito);
+        L3.setText(jugador.getLetras().primeralet.getLetra());
+        pun[2] = jugador.getLetras().primeralet.getPunteo();
+        letras[2] = jugador.getLetras().primeralet.getLetra();
         CL3.setText(lista.primeralet.getLetra());
-        i4 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i4.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[3] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[3].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L4.setIcon(cuadrito);
+        L4.setText(jugador.getLetras().primeralet.getLetra());
+        pun[3] = jugador.getLetras().primeralet.getPunteo();
+        letras[3] = jugador.getLetras().primeralet.getLetra();
         CL4.setText(lista.primeralet.getLetra());
-        i5 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i5.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[4] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[4].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L5.setIcon(cuadrito);
+        L5.setText(jugador.getLetras().primeralet.getLetra());
+        pun[4] = jugador.getLetras().primeralet.getPunteo();
+        letras[4] = jugador.getLetras().primeralet.getLetra();
         CL5.setText(lista.primeralet.getLetra());
-        i6 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i6.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[5] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[5].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L6.setIcon(cuadrito);
+        L6.setText(jugador.getLetras().primeralet.getLetra());
+        pun[5] = jugador.getLetras().primeralet.getPunteo();
+        letras[5] = jugador.getLetras().primeralet.getLetra();
         CL6.setText(lista.primeralet.getLetra());
-        i7 = new ImageIcon(getClass().getResource(jugador.getLetras().siguientelet().getImagen()));
-        cuadrito = new ImageIcon(i7.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+
+        im[6] = jugador.getLetras().siguientelet().getImagen();
+        cuadrito = new ImageIcon(im[6].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L7.setIcon(cuadrito);
         CL7.setText(lista.primeralet.getLetra());
+        L7.setText(jugador.getLetras().primeralet.getLetra());
+        pun[6] = jugador.getLetras().primeralet.getPunteo();
+        letras[6] = jugador.getLetras().primeralet.getLetra();
+        jugador.getLetras().grafico();
     }
 
     private void CL6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL6ActionPerformed
         // TODO add your handling code here:
+        checkletter(6);
     }//GEN-LAST:event_CL6ActionPerformed
 
     private void L7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L7MouseDragged
         // TODO add your handling code here:
-        moverlb(L7, evt, i7);
+        moverlb(L7, evt, im[6]);
     }//GEN-LAST:event_L7MouseDragged
 
     private void L7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L7MouseReleased
         // TODO add your handling code here:
-        soltarLb(L7, evt, 70, 620, i7);
+        soltarLb(L7, evt, 70, 620, im[6]);
     }//GEN-LAST:event_L7MouseReleased
 
     private void L6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L6MouseDragged
         // TODO add your handling code here:
-        moverlb(L6, evt, i6);
+        moverlb(L6, evt, im[4]);
     }//GEN-LAST:event_L6MouseDragged
 
     private void L5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseDragged
         // TODO add your handling code here:
-        moverlb(L5, evt, i5);
+        moverlb(L5, evt, im[4]);
     }//GEN-LAST:event_L5MouseDragged
 
     private void L4MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L4MouseDragged
         // TODO add your handling code here:
-        moverlb(L4, evt, i4);
+        moverlb(L4, evt, im[3]);
     }//GEN-LAST:event_L4MouseDragged
 
     private void L3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L3MouseDragged
         // TODO add your handling code here:
-        moverlb(L3, evt, i3);
+        moverlb(L3, evt, im[2]);
     }//GEN-LAST:event_L3MouseDragged
 
     private void L2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L2MouseDragged
         // TODO add your handling code here:
-        moverlb(L2, evt, i2);
+        moverlb(L2, evt, im[1]);
     }//GEN-LAST:event_L2MouseDragged
 
     private void L1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L1MouseDragged
         // TODO add your handling code here:
-        moverlb(L1, evt, i1);
+        moverlb(L1, evt, im[0]);
     }//GEN-LAST:event_L1MouseDragged
 
     private void L6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L6MouseReleased
         // TODO add your handling code here:
-        soltarLb(L6, evt, 160, 620, i6);
+        soltarLb(L6, evt, 160, 620, im[5]);
     }//GEN-LAST:event_L6MouseReleased
 
     private void L5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseReleased
         // TODO add your handling code here:
-        soltarLb(L5, evt, 240, 620, i5);
+        soltarLb(L5, evt, 240, 620, im[4]);
     }//GEN-LAST:event_L5MouseReleased
 
     private void L4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L4MouseReleased
         // TODO add your handling code here:
-        soltarLb(L4, evt, 320, 620, i4);
+        soltarLb(L4, evt, 320, 620, im[3]);
     }//GEN-LAST:event_L4MouseReleased
 
     private void L3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L3MouseReleased
         // TODO add your handling code here:
-        soltarLb(L3, evt, 400, 620, i3);
+        soltarLb(L3, evt, 400, 620, im[2]);
     }//GEN-LAST:event_L3MouseReleased
 
     private void L2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L2MouseReleased
         // TODO add your handling code here:
-        soltarLb(L2, evt, 480, 620, i2);
+        soltarLb(L2, evt, 480, 620, im[1]);
     }//GEN-LAST:event_L2MouseReleased
 
     private void L1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L1MouseReleased
         // TODO add your handling code here:
-        soltarLb(L1, evt, 560, 620, i1);
+        soltarLb(L1, evt, 560, 620, im[0]);
     }//GEN-LAST:event_L1MouseReleased
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
         // TODO add your handling code here:
         NodoJug sig = jugador.jugadorActual.getSiguiente();
+//        NodoJug sig = jugador.jugadorActual;
         L7.setBounds(70, 620, 70, 70);
         L6.setBounds(160, 620, 70, 70);
         L5.setBounds(240, 620, 70, 70);
@@ -578,6 +640,11 @@ public class Tablero extends javax.swing.JFrame {
         L3.setBounds(400, 620, 70, 70);
         L2.setBounds(480, 620, 70, 70);
         L1.setBounds(560, 620, 70, 70);
+//        for (int i = 0; i < 7; i++) {
+//            if (cambiar[i]) {
+//                jugador.jugadorActual.getLetras().cambiarletra(i, letras[i], pun[i], im[i]);
+//            }
+//        }
         jugador.jugadorActual = jugador.jugadorActual.getSiguiente();
         jugadorAct(sig, sig.getLetras());
 
@@ -592,19 +659,19 @@ public class Tablero extends javax.swing.JFrame {
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
         // TODO add your handling code here:
-        cuadrito = new ImageIcon(i1.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[0].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L1.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i2.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[1].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L2.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i3.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[2].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L3.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i4.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[3].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L4.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i5.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[4].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L5.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i6.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[5].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L6.setIcon(cuadrito);
-        cuadrito = new ImageIcon(i7.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+        cuadrito = new ImageIcon(im[6].getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
         L7.setIcon(cuadrito);
         L7.setBounds(70, 620, 70, 70);
         L6.setBounds(160, 620, 70, 70);
@@ -615,6 +682,36 @@ public class Tablero extends javax.swing.JFrame {
         L1.setBounds(560, 620, 70, 70);
     }//GEN-LAST:event_cancelarMouseClicked
 
+    private void CL2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL2ActionPerformed
+        // TODO add your handling code here:
+        checkletter(2);
+    }//GEN-LAST:event_CL2ActionPerformed
+
+    private void CL3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL3ActionPerformed
+        // TODO add your handling code here:
+        checkletter(3);
+    }//GEN-LAST:event_CL3ActionPerformed
+
+    private void CL4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL4ActionPerformed
+        // TODO add your handling code here:
+        checkletter(4);
+    }//GEN-LAST:event_CL4ActionPerformed
+
+    private void CL5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL5ActionPerformed
+        // TODO add your handling code here:
+        checkletter(5);
+    }//GEN-LAST:event_CL5ActionPerformed
+
+    private void CL7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL7ActionPerformed
+        // TODO add your handling code here:
+        checkletter(7);
+    }//GEN-LAST:event_CL7ActionPerformed
+
+    private void CL1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CL1ActionPerformed
+        // TODO add your handling code here:
+        checkletter(1);
+    }//GEN-LAST:event_CL1ActionPerformed
+
     public void moverlb(JLabel lb, java.awt.event.MouseEvent evt, ImageIcon im) {
         lb.setLocation(lb.getX() + evt.getX() - lb.getWidth() / 2, lb.getY() + evt.getY() - lb.getHeight() / 2);
     }
@@ -622,22 +719,33 @@ public class Tablero extends javax.swing.JFrame {
     public void soltarLb(JLabel lb, java.awt.event.MouseEvent evt, int lx, int ly, ImageIcon im) {
         int centrox = lb.getX() + evt.getX() - lb.getWidth() / 2;
         int centroy = lb.getY() + evt.getY() - lb.getHeight() / 2;
-        System.out.println(centrox);
-        System.out.print(centroy);
         int tablax = Tabla.getX();
         int tablay = Tabla.getY();
+        int cx = ((centrox - tablax + dimensions / 2 + 1) / dimensions);
+        int cy = ((centroy - tablay + dimensions / 2 + 1) / dimensions);
         int tW = Tabla.getWidth();
         if (centrox >= tablax && centrox <= tablax + tW & centroy >= tablay & centroy <= tablay + tW) {
-            int x = tablax + ((centrox - tablax) / dimensions) * dimensions;
-            int y = tablay + ((centroy - tablay) / dimensions) * dimensions;
-            lb.setBounds(x, y, dimensions, dimensions);
-            cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
-            lb.setIcon(cuadrito);
+            int x = tablax + cx * dimensions;
+            int y = tablay + cy * dimensions;
+            if (!tablero.hayAlgo(cx, cy)) {
+                lb.setBounds(x, y, dimensions, dimensions);
+                cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
+                lb.setIcon(cuadrito);
+            } else {
+                lb.setBounds(lx, ly, 70, 70);
+                cuadrito = new ImageIcon(im.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+                lb.setIcon(cuadrito);
+            }
+
         } else {
             lb.setBounds(lx, ly, 70, 70);
             cuadrito = new ImageIcon(im.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
             lb.setIcon(cuadrito);
         }
+    }
+
+    private void checkletter(int le) {
+        cambiar[le - 1] = !cambiar[le - 1];
     }
 
     public void timer() {
@@ -649,22 +757,20 @@ public class Tablero extends javax.swing.JFrame {
                 try {
                     directo = miDir.getCanonicalPath();
                     imcola = new ImageIcon(directo + "\\Practica1EDD\\cola.jpg");
-                    imdiccio= new ImageIcon(directo + "\\Practica1EDD\\diccionario.jpg");
+                    imdiccio = new ImageIcon(directo + "\\Practica1EDD\\diccionario.jpg");
                     imficha = new ImageIcon(directo + "\\Practica1EDD\\ficha.jpg");
                     immatriz = new ImageIcon(directo + "\\Practica1EDD\\matriz.jpg");
                     imuser = new ImageIcon(directo + "\\Practica1EDD\\jugadores.jpg");
-                    
+
                     lbcola.setIcon(new ImageIcon(imcola.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
                     lbdiccionario.setIcon(new ImageIcon(imdiccio.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
                     lbfichas.setIcon(new ImageIcon(imficha.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
                     lbtablero.setIcon(new ImageIcon(immatriz.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
                     lbjugadores.setIcon(new ImageIcon(imuser.getImage().getScaledInstance(265, 404, Image.SCALE_DEFAULT)));
-                    
+
                 } catch (IOException ex) {
                     Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                
 
             }
         });

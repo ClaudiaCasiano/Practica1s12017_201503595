@@ -5,6 +5,8 @@
  */
 package practica1;
 
+import java.util.Random;
+
 /**
  *
  * @author Paola
@@ -30,8 +32,7 @@ public class Jugadores {
         if (head == null) {
             this.head = newe;
             newe.setSiguiente(head);
-            jugadorActual = this.head;
-            archivo = archivo + head.getName()+"; \n";
+             archivo = archivo + head.getName() + "; \n";
         } else {
             NodoJug actual = head;
             while (actual.getSiguiente() != head) {
@@ -61,6 +62,13 @@ public class Jugadores {
     public NodoJug siguiente(){
         jugadorActual = jugadorActual.getSiguiente();
         return jugadorActual;
+    }
+    public void Random() {
+        jugadorActual = head;
+        int n = new Random().nextInt(numero);
+        for (int i = 0; i < n; i++) {
+            jugadorActual = jugadorActual.getSiguiente();
+        }
     }
 
     public boolean verificar(String nombre) {

@@ -5,17 +5,20 @@
  */
 package practica1;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Paola
  */
-public class NodoLet {
+    public class NodoLet {
     private String letra;
     private int punteo;
-    private String imagen;
+    private ImageIcon imagen;
     private NodoLet siguiente;
+    private NodoLet anterior;
 
-    public NodoLet(String letra, int punteo, String imagen) {
+    public NodoLet(String letra, int punteo, ImageIcon imagen) {
         this.letra = letra;
         this.punteo = punteo;
         this.imagen = imagen;
@@ -66,14 +69,28 @@ public class NodoLet {
     /**
      * @return the imagen
      */
-    public String getImagen() {
+    public ImageIcon getImagen() {
         return imagen;
+    }
+
+    /**
+     * @return the anterior
+     */
+    public NodoLet getAnterior() {
+        return anterior;
+    }
+
+    /**
+     * @param anterior the anterior to set
+     */
+    public void setAnterior(NodoLet anterior) {
+        this.anterior = anterior;
     }
 
     /**
      * @param imagen the imagen to set
      */
-    public void setImagen(String imagen) {
+    public void setImagen(ImageIcon imagen) {
         this.imagen = imagen;
     }
     
