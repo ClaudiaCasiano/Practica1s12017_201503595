@@ -47,14 +47,20 @@ public class ColaLetras {
          */
         Random n = new Random();
         int x =  (int)(n.nextDouble()*noLetras);
-                
-        System.out.print("numero de letras" + noLetras);
-        System.out.print("numero random "+x);
+        System.out.print(" numero de letras" + noLetras);
+        System.out.print(" numero random "+x+"; ");
         for (int i = 0; i < x-1; i++) {
-//            System.out.println(i);
-            actual = actual.getSiguiente();
+            System.out.print(i);
+            if(actual.getSiguiente()!=null){
+                actual = actual.getSiguiente();
+            }
+            System.out.print(actual.getLetra()+", ");
         }
-        NodoLet devuelve = actual.getSiguiente();
+        NodoLet devuelve = actual;
+        if(actual.getSiguiente()!=null){
+                devuelve = actual.getSiguiente();
+            }
+        
         valoractual = devuelve.getPunteo();
         imagenactual = devuelve.getImagen();
         letraactual = devuelve.getLetra();

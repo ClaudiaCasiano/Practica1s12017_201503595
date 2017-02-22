@@ -217,7 +217,7 @@ public class Tab {
     }
     
     
-    public boolean hayAlgo(int x, int y){
+    public boolean hayAlgo(int x, int y,String letra){
         NodoTab casilla = first;
         for (int i = 0; i < x; i++) {
             casilla = casilla.getSiguiete();
@@ -225,13 +225,30 @@ public class Tab {
         for (int i = 0; i < y; i++) {
             casilla = casilla.getDown();
         }
-        return !"null".equals(casilla.getLetra());
+        actually = casilla;
+        if ("null".equals(casilla.getLetra())){
+            casilla.setLetra(letra);
+            return false;
+        }
+        
+        return true;
     }
 
     public void crearel() {
         grafic = new graphiz();
         grafic.grafo(arch(), "matriz");
         grafic.generar("matriz");
+    }
+
+    void hacervacio(int cx, int cy) {
+         NodoTab casilla = first;
+        for (int i = 0; i < cx; i++) {
+            casilla = casilla.getSiguiete();
+        }
+        for (int i = 0; i < cy; i++) {
+            casilla = casilla.getDown();
+        }
+            casilla.setLetra("null");
     }
 
     

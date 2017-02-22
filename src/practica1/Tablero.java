@@ -34,7 +34,7 @@ public class Tablero extends javax.swing.JFrame {
     Diccionario dic;
     Icon cuadrito;
     Tab tablero;
-    int dimensions, ax, ay;
+    int dimensions, cx, cy;
     int pun[] = new int[7];
     boolean cambiar[] = new boolean[7];
     String letras[] = new String[7];
@@ -116,6 +116,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L1MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L1MouseReleased(evt);
             }
@@ -132,6 +135,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L7MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L7MouseReleased(evt);
             }
@@ -148,6 +154,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L4MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L4MouseReleased(evt);
             }
@@ -164,6 +173,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L3MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L3MouseReleased(evt);
             }
@@ -180,6 +192,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L2MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L2MouseReleased(evt);
             }
@@ -196,6 +211,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L5MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L5MouseReleased(evt);
             }
@@ -212,6 +230,9 @@ public class Tablero extends javax.swing.JFrame {
             }
         });
         L6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                L6MouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 L6MouseReleased(evt);
             }
@@ -631,8 +652,7 @@ public class Tablero extends javax.swing.JFrame {
 
     private void changeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeActionPerformed
         // TODO add your handling code here:
-        NodoJug sig = jugador.jugadorActual.getSiguiente();
-//        NodoJug sig = jugador.jugadorActual;
+//        
         L7.setBounds(70, 620, 70, 70);
         L6.setBounds(160, 620, 70, 70);
         L5.setBounds(240, 620, 70, 70);
@@ -640,11 +660,12 @@ public class Tablero extends javax.swing.JFrame {
         L3.setBounds(400, 620, 70, 70);
         L2.setBounds(480, 620, 70, 70);
         L1.setBounds(560, 620, 70, 70);
-//        for (int i = 0; i < 7; i++) {
-//            if (cambiar[i]) {
-//                jugador.jugadorActual.getLetras().cambiarletra(i, letras[i], pun[i], im[i]);
-//            }
-//        }
+        for (int i = 0; i < 7; i++) {
+            if (cambiar[i]) {
+                jugador.jugadorActual.getLetras().cambiarletra(i, letras[i], pun[i], im[i]);
+            }
+        }
+        NodoJug sig = jugador.jugadorActual;
         jugador.jugadorActual = jugador.jugadorActual.getSiguiente();
         jugadorAct(sig, sig.getLetras());
 
@@ -712,8 +733,63 @@ public class Tablero extends javax.swing.JFrame {
         checkletter(1);
     }//GEN-LAST:event_CL1ActionPerformed
 
+    private void L7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L7MouseClicked
+        // TODO add your handling code here:
+        clickear(L7, evt);
+    }//GEN-LAST:event_L7MouseClicked
+
+    private void L6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L6MouseClicked
+        // TODO add your handling code here:
+        clickear(L6, evt);
+    }//GEN-LAST:event_L6MouseClicked
+
+    private void L5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L5MouseClicked
+        // TODO add your handling code here:
+        clickear(L5, evt);
+    }//GEN-LAST:event_L5MouseClicked
+
+    private void L4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L4MouseClicked
+        // TODO add your handling code here:
+        clickear(L4, evt);
+    }//GEN-LAST:event_L4MouseClicked
+
+    private void L3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L3MouseClicked
+        // TODO add your handling code here:
+        clickear(L3, evt);
+    }//GEN-LAST:event_L3MouseClicked
+
+    private void L2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L2MouseClicked
+        // TODO add your handling code here:
+        clickear(L2, evt);
+    }//GEN-LAST:event_L2MouseClicked
+
+    private void L1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L1MouseClicked
+        // TODO add your handling code here:
+        clickear(L1, evt);
+    }//GEN-LAST:event_L1MouseClicked
+
+    private void clickear(JLabel lb, java.awt.event.MouseEvent evt){
+        System.out.println("click");
+//        int tablax = Tabla.getX();
+//        int tablay = Tabla.getY();
+//        int ax = (lb.getX()-tablax)/dimensions;
+//        int ay = (lb.getY()-tablay)/dimensions;
+//        int tW = Tabla.getWidth();
+//        if (lb.getX() >= tablax && lb.getX() <= tablax + tW & lb.getY() >= tablay & lb.getY() <= tablay + tW) {
+//            System.out.println("borra borra");
+//            tablero.hacervacio(ax,ay);
+//        }
+    }
+    
     public void moverlb(JLabel lb, java.awt.event.MouseEvent evt, ImageIcon im) {
+//        int ax = (lb.getX()-Tabla.getX())/dimensions;
+//        int ay = (lb.getY()-Tabla.getY())/dimensions;
         lb.setLocation(lb.getX() + evt.getX() - lb.getWidth() / 2, lb.getY() + evt.getY() - lb.getHeight() / 2);
+        
+//        if (lb.getX() >= Tabla.getX() && lb.getX() <= Tabla.getAlignmentX() + Tabla.getWidth() & lb.getY() >= Tabla.getY() & lb.getY() <= Tabla.getY() + Tabla.getWidth()) {
+//            tablero.hacervacio(ax,ay);
+//        }
+        
     }
 
     public void soltarLb(JLabel lb, java.awt.event.MouseEvent evt, int lx, int ly, ImageIcon im) {
@@ -721,21 +797,22 @@ public class Tablero extends javax.swing.JFrame {
         int centroy = lb.getY() + evt.getY() - lb.getHeight() / 2;
         int tablax = Tabla.getX();
         int tablay = Tabla.getY();
-        int cx = ((centrox - tablax + dimensions / 2 + 1) / dimensions);
-        int cy = ((centroy - tablay + dimensions / 2 + 1) / dimensions);
+        cx = ((centrox - tablax + dimensions / 2 + 1) / dimensions);
+        cy = ((centroy - tablay + dimensions / 2 + 1) / dimensions);
         int tW = Tabla.getWidth();
         if (centrox >= tablax && centrox <= tablax + tW & centroy >= tablay & centroy <= tablay + tW) {
             int x = tablax + cx * dimensions;
             int y = tablay + cy * dimensions;
-            if (!tablero.hayAlgo(cx, cy)) {
+//            if (!tablero.hayAlgo(cx, cy,lb.getText())) {
+                System.out.println(tablero.actually.getLetra());
                 lb.setBounds(x, y, dimensions, dimensions);
                 cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
                 lb.setIcon(cuadrito);
-            } else {
-                lb.setBounds(lx, ly, 70, 70);
-                cuadrito = new ImageIcon(im.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
-                lb.setIcon(cuadrito);
-            }
+//            } else {
+//                lb.setBounds(lx, ly, 70, 70);
+//                cuadrito = new ImageIcon(im.getImage().getScaledInstance(70, 70, Image.SCALE_DEFAULT));
+//                lb.setIcon(cuadrito);
+//            }
 
         } else {
             lb.setBounds(lx, ly, 70, 70);
