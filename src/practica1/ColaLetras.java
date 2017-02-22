@@ -16,6 +16,10 @@ public class ColaLetras {
 
     NodoLet first;
     NodoLet actual;
+
+    NodoLet f;
+    NodoLet u;
+
     int number = 0;
     int valoractual;
     String[] elim = new String[7];
@@ -25,8 +29,7 @@ public class ColaLetras {
 
     public void insert(String letter, int punteo, ImageIcon imagen) {
         NodoLet newe = new NodoLet(letter, punteo, imagen);
-        System.out.print(newe.getLetra()+ ", ");
-
+        System.out.print(newe.getLetra() + ", ");
         if (first == null) {
             first = newe;
             first.setSiguiente(null);
@@ -46,26 +49,47 @@ public class ColaLetras {
         ya que el siguiente de este es null
          */
         Random n = new Random();
-        int x =  (int)(n.nextDouble()*noLetras);
+        int x = (int) (n.nextDouble() * noLetras);
         System.out.print(" numero de letras" + noLetras);
-        System.out.print(" numero random "+x+"; ");
-        for (int i = 0; i < x-1; i++) {
+        System.out.print(" numero random " + x + "; ");
+        for (int i = 0; i < x - 1; i++) {
             System.out.print(i);
-            if(actual.getSiguiente()!=null){
+            if (actual.getSiguiente() != null) {
                 actual = actual.getSiguiente();
             }
-            System.out.print(actual.getLetra()+", ");
+            System.out.print(actual.getLetra() + ", ");
         }
         NodoLet devuelve = actual;
-        if(actual.getSiguiente()!=null){
-                devuelve = actual.getSiguiente();
-            }
-        
+        if (actual.getSiguiente() != null) {
+            devuelve = actual.getSiguiente();
+        }
+
         valoractual = devuelve.getPunteo();
         imagenactual = devuelve.getImagen();
         letraactual = devuelve.getLetra();
         actual.setSiguiente(devuelve.getSiguiente());
         noLetras--;
+    }
+    public NodoLet ran() {
+                actual = first;
+
+       Random n = new Random();
+        int x = (int) (n.nextDouble() * noLetras);
+        System.out.print(" numero de letras" + noLetras);
+        System.out.print(" numero random " + x + "; ");
+        for (int i = 0; i < x - 1; i++) {
+            System.out.print(i);
+            if (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
+            }
+            System.out.print(actual.getLetra() + ", ");
+        }
+        NodoLet devuelve = actual;
+        if (actual.getSiguiente() != null) {
+            devuelve = actual.getSiguiente();
+        }
+        noLetras--;
+        return devuelve;
     }
 
     public int pushno() {
@@ -75,7 +99,8 @@ public class ColaLetras {
     public ImageIcon pushim() {
         return imagenactual;
     }
-    public String pushlet(){
+
+    public String pushlet() {
         return letraactual;
     }
 

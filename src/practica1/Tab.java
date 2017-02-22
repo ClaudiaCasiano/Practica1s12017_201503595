@@ -25,7 +25,7 @@ public class Tab {
     int columnas = 0;
     int filas = 0;
     int dimension, dx, dy;
-    public String archivo="";
+    public String archivo = "";
 
     public void crear(int d) {
 
@@ -136,7 +136,7 @@ public class Tab {
 //            System.out.println("kkk(" + filas + "," + columnas + ")");
         }
 //        crearel(archivo);
-        
+
     }
 
     private void CrearCasilla(int f, int c, int valor) {
@@ -195,29 +195,36 @@ public class Tab {
         }
 
     }
-    
-    public String arch(){
+
+    public String arch() {
         archivo = "";
-        
-        for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; j++) {
-                archivo = archivo + "nodo"+i+""+j+"; \n";
+        NodoTab fila = first;
+        NodoTab actual;
+        archivo = archivo + first.getLetra() + "; \n";
+
+        for (int i = 1; i < dimension - 1; i++) {
+            actual = fila;
+            for (int j = 1; j < dimension; j++) {
+                actual = actual.getSiguiete();
+                archivo = archivo + actual.getLetra() + " -> " + actual.getAnterior().getLetra();
+                archivo = archivo + actual.getAnterior().getLetra() + " -> " + actual.getLetra();
             }
-        }
-        for (int i = 0; i < dimension-1; i++) {
-            for (int j = 0; j < dimension-1; j++) {
-                archivo = archivo + "nodo"+i+""+j+" -> nodo"+(i+1)+""+(j+1)+"; \n";
-                archivo = archivo + "nodo"+(i+1)+""+(j+1)+" -> nodo"+(i)+""+(j)+"; \n";
-                archivo = archivo + "nodo"+(i)+""+(j)+" -> nodo"+(i+1)+""+(j)+"; \n";
-                archivo = archivo + "nodo"+(i+1)+""+(j)+" -> nodo"+(i)+""+(j)+"; \n";
-                
+            if (fila.getDown() != null) {
+                fila = fila.getDown();
+                actual = fila;
+                for (int j = 0; j < dimension; j++) {
+                    archivo = archivo + actual.getLetra() + " -> " + actual.getUp().getLetra();
+                    archivo = archivo + actual.getUp().getLetra() + " -> " + actual.getLetra();
+                    actual = actual.getSiguiete();
+                }
             }
+
         }
+
         return archivo;
     }
-    
-    
-    public boolean hayAlgo(int x, int y,String letra){
+
+    public boolean hayAlgo(int x, int y, String letra) {
         NodoTab casilla = first;
         for (int i = 0; i < x; i++) {
             casilla = casilla.getSiguiete();
@@ -226,11 +233,11 @@ public class Tab {
             casilla = casilla.getDown();
         }
         actually = casilla;
-        if ("null".equals(casilla.getLetra())){
+        if ("null".equals(casilla.getLetra())) {
             casilla.setLetra(letra);
             return false;
         }
-        
+
         return true;
     }
 
@@ -241,15 +248,56 @@ public class Tab {
     }
 
     void hacervacio(int cx, int cy) {
-         NodoTab casilla = first;
+        NodoTab casilla = first;
         for (int i = 0; i < cx; i++) {
             casilla = casilla.getSiguiete();
         }
         for (int i = 0; i < cy; i++) {
             casilla = casilla.getDown();
         }
-            casilla.setLetra("null");
+        casilla.setLetra("null");
     }
 
-    
+    public String horizontal(int x, int y) {
+        String palabra = "";
+        NodoTab actual = first;
+        for (int i = 0; i < x; i++) {
+            actual = actual.getSiguiete();
+        }
+        for (int j = 0; j < y; j++) {
+            actual = actual.getDown();
+        }
+
+        while (actual.getSiguiete().getLetra() != "null" && actual.getSiguiete() != null) {
+            palabra = palabra + actual.getSiguiete().getLetra();
+            actual = actual.getSiguiete();
+        }
+        while (actual.getAnterior().getLetra() != "null" && actual.getAnterior() != null) {
+            palabra = actual.getSiguiete().getLetra() + palabra;
+            actual = actual.getAnterior();
+        }
+        return palabra;
+
+    }
+
+    public String vertical(int x, int y) {
+        String palabra = "";
+        NodoTab actual = first;
+        for (int i = 0; i < x; i++) {
+            actual = actual.getSiguiete();
+        }
+        for (int j = 0; j < y; j++) {
+            actual = actual.getDown();
+        }
+
+        while (actual.getSiguiete().getLetra() != "null" && actual.getSiguiete() != null) {
+            palabra = palabra + actual.getDown().getLetra();
+            actual = actual.getDown();
+        }
+        while (actual.getAnterior().getLetra() != "null" && actual.getAnterior() != null) {
+            palabra = actual.getUp().getLetra() + palabra;
+            actual = actual.getUp();
+        }
+        return palabra;
+    }
 }

@@ -28,6 +28,7 @@ public class Tablero extends javax.swing.JFrame {
      * Creates new form Tablero
      */
     IngresarJugador op;
+    ColaLetras cola;
     Jugadores jugador;
     ImageIcon[] im = new ImageIcon[7];  //procesadores dice.. nooo hombreee xD
     ImageIcon imcola, imuser, imficha, imdiccio, immatriz;
@@ -42,6 +43,7 @@ public class Tablero extends javax.swing.JFrame {
     public Tablero(Tab tablero, Jugadores jugadores, ColaLetras cola, Diccionario dic) {
         initComponents();
         this.dic = dic;
+        this.cola = cola;
         this.tablero = tablero;
         this.jugador = jugadores;
         cargarTablero();
@@ -486,6 +488,11 @@ public class Tablero extends javax.swing.JFrame {
         validar1.setFont(new java.awt.Font("8BIT WONDER", 0, 11)); // NOI18N
         validar1.setText("validar");
         validar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        validar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                validar1MouseClicked(evt);
+            }
+        });
         PanelCafe.add(validar1);
         validar1.setBounds(700, 590, 120, 80);
 
@@ -660,9 +667,11 @@ public class Tablero extends javax.swing.JFrame {
         L3.setBounds(400, 620, 70, 70);
         L2.setBounds(480, 620, 70, 70);
         L1.setBounds(560, 620, 70, 70);
+        
+        
         for (int i = 0; i < 7; i++) {
             if (cambiar[i]) {
-                jugador.jugadorActual.getLetras().cambiarletra(i, letras[i], pun[i], im[i]);
+                jugador.jugadorActual.getLetras().cambiarletra(cola,i, letras[i], pun[i], im[i]);
             }
         }
         NodoJug sig = jugador.jugadorActual;
@@ -768,6 +777,16 @@ public class Tablero extends javax.swing.JFrame {
         clickear(L1, evt);
     }//GEN-LAST:event_L1MouseClicked
 
+    private void validar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validar1MouseClicked
+        // TODO add your handling code here:
+        if (dic.contiene(tablero.horizontal(cx, cy))){
+            Puntaje.setText(Puntaje.getText()+ nombre.getText() + (tablero.horizontal(cx, cy).length()+ 2*3)+"\n");
+        }
+        if (dic.contiene(tablero.vertical(cx, cy))){
+            Puntaje.setText(Puntaje.getText()+ nombre.getText() + "\n");
+        }
+    }//GEN-LAST:event_validar1MouseClicked
+
     private void clickear(JLabel lb, java.awt.event.MouseEvent evt){
         System.out.println("click");
 //        int tablax = Tabla.getX();
@@ -804,6 +823,7 @@ public class Tablero extends javax.swing.JFrame {
             int x = tablax + cx * dimensions;
             int y = tablay + cy * dimensions;
 //            if (!tablero.hayAlgo(cx, cy,lb.getText())) {
+                tablero.hayAlgo(cx, cy,lb.getText());
                 System.out.println(tablero.actually.getLetra());
                 lb.setBounds(x, y, dimensions, dimensions);
                 cuadrito = new ImageIcon(im.getImage().getScaledInstance(dimensions, dimensions, Image.SCALE_DEFAULT));
@@ -823,6 +843,7 @@ public class Tablero extends javax.swing.JFrame {
 
     private void checkletter(int le) {
         cambiar[le - 1] = !cambiar[le - 1];
+        System.out.println(cambiar[le-1]);
     }
 
     public void timer() {

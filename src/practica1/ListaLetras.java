@@ -83,19 +83,17 @@ public class ListaLetras {
        
        
        //PARA REEMPLAZAR LETRA
-    void cambiarletra(int i,String letter, int punteo, ImageIcon image) {
+        void cambiarletra(ColaLetras cola,int i,String letter, int punteo, ImageIcon image) {
         NodoLet ju = first;
         for (int j = 0; j < i; j++) {
             ju = ju.getSiguiente();
         }
+        NodoLet nueva = cola.ran();
         cola.insert(letter, punteo, image);
-        cola.push();
-        ju.setLetra(cola.pushlet());
-        ju.setPunteo(cola.pushno());
-        ju.setImagen(cola.pushim());
+        ju.setLetra(nueva.getLetra());
+        ju.setPunteo(nueva.getPunteo());
+        ju.setImagen(nueva.getImagen());
         cola.noLetras++;
-        
-        
     
     }
 }

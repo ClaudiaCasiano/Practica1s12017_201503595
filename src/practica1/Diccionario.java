@@ -50,4 +50,14 @@ public class Diccionario {
         grafico.grafo(archivo, "diccionario");
         grafico.generar("diccionario");
     }
+    
+    public boolean contiene(String palabra){
+        NodoListaSimple actual;
+        for (actual = cabeza; actual.getSiguiente()!= null; actual = actual.getSiguiente()) {
+            if(palabra.equals(actual.getPalabra())){
+                return true;
+            }
+        }
+        return false;
+    }
 }

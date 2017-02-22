@@ -119,8 +119,8 @@ public class IngresarJugador extends javax.swing.JFrame {
             if (jugadores.verificar(nombrejug.getText()) && !nombrejug.getText().isEmpty()) {
             ListaLetras letras = new ListaLetras(cola);
             for (int i = 0; i < 7; i++) {
-                cola.push();
-                letras.insert(cola.pushlet(), cola.pushno(),cola.pushim());//llena lista de letras del jugador
+                NodoLet co = cola.ran();
+                letras.insert(co.getLetra(), co.getPunteo(),co.getImagen());//llena lista de letras del jugador
                 System.out.print("(" + letras.actual.getLetra() + "," + letras.actual.getPunteo()+ ")");
             }
             jugadores.insert(nombrejug.getText().trim(), letras);
